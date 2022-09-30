@@ -51,6 +51,7 @@ import '../styles/MenuBar.css';
           </Collapse>
         </Navbar>
       </div>
+      
       <div>
         <Outlet/>
       </div>
