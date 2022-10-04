@@ -13,13 +13,15 @@ function App() {
         </div>
       </header>
       <body>
-      <Container>
-        <Row>
-          <Col sm="4">.col-6 .col-sm-4</Col>
-          <Col sm="4">.col-6 .col-sm-4</Col>
-          <Col sm="4">.col-sm-4</Col>
-        </Row>
-      </Container>s
+    <div className='features'>
+        <Container>
+            <Row>
+            <Col sm="4">.col-6 .col-sm-4</Col>
+            <Col sm="4">.col-6 .col-sm-4</Col>
+            <Col sm="4">.col-sm-4</Col>
+            </Row>
+        </Container>
+    </div>     
       </body>
     </div>
   );
