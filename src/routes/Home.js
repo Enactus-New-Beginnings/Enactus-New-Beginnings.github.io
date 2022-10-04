@@ -1,5 +1,7 @@
 import logo from '../img/logo.png';
 import '../styles/Home.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { Button, Container, Row, Col } from 'reactstrap';
 
 function App() {
@@ -16,9 +18,12 @@ function App() {
     <div className='features'>
         <Container>
             <Row>
-            <Col sm="4">.col-6 .col-sm-4</Col>
-            <Col sm="4">.col-6 .col-sm-4</Col>
-            <Col sm="4">.col-sm-4</Col>
+                <Col sm="4">
+                    <FontAwesomeIcon icon={solid('user-secret')} />
+                    .col-6 .col-sm-4
+                </Col>
+                <Col sm="4">.col-6 .col-sm-4</Col>
+                <Col sm="4">.col-sm-4</Col>
             </Row>
         </Container>
     </div>     
