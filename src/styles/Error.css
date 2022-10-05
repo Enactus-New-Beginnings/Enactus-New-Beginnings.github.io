@@ -1,0 +1,29 @@
+    .Error-header {
+    background-image: url("../img/error-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .error-title{
+    font-size: 4em;
+    font-weight: 700;
+    margin: 0;
+    color: #ffffff;
+    margin-bottom: 3%;
+  }
+  
+  .error-box{
+    border-radius: 10px;
+    background-image: linear-gradient(to right, rgba(2, 19, 168, 0.4), rgba(91, 187, 255, 0.4) , rgba(255, 165, 0, 0.4));
+    height: auto;
+    width: 70vw;
+    padding: 1%;
+  }

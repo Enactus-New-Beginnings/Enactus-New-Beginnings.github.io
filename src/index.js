@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.css';
-import MenuBar from './components/MenuBar';
-import Home from './routes/Home'
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -10,10 +9,15 @@ import {
 } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 
+import MenuBar from './components/MenuBar';
+import Home from './routes/Home'
+import ErrorPage from './routes/ErrorPage'
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MenuBar/>,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: "",

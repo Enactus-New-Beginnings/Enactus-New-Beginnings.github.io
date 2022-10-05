@@ -1,6 +1,28 @@
 div.sticky {
     position: -webkit-sticky; /* Safari */
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 99;
   }
+
+  .top-logo {
+    height: 32px;
+    width: 32px;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .top-logo {
+      animation: logo-pulse infinite 1s alternate;
+    }
+  }
+
+  @keyframes logo-pulse {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(0.9);
+    }
+  }
+  

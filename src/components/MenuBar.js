@@ -13,37 +13,41 @@ import {
   DropdownItem } from 'reactstrap';
 import { Outlet } from "react-router-dom";
 import '../styles/MenuBar.css';
+import logo from '../img/logo.png';
 
   export default function MenuBar(){
     const [isOpen, setOpen] = React.useState(false)
     return(
       <>
        <div className='sticky'>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <Navbar light expand="md">
+          <NavbarBrand href="/"><img src={logo} className="top-logo" alt="logo" /></NavbarBrand>
           <NavbarToggler onClick={()=>{setOpen(!isOpen)}} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+                <NavLink href="/components/">Profile</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <NavLink href="https://github.com/reactstrap/reactstrap">Employment</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  Options
+                  Resources
                 </DropdownToggle>
                 <DropdownMenu end>
                   <DropdownItem>
-                    Option 1
+                    Food
                   </DropdownItem>
                   <DropdownItem>
-                    Option 2
+                    Clothing
+                  </DropdownItem>
+                  <DropdownItem>
+                    Shelter
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    Reset
+                    Video Tutorials
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
