@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
@@ -12,37 +12,37 @@ export default function ResourcesSideBar(){
             <Container fluid>
                 <Row>
                     <Col md="2" xs="3" className="sidebar">
-                        <div className='selection'>
+                        <Link to="/resources/food" className='selection'>
                             <h5>
                                 <FontAwesomeIcon icon={solid('utensils')} /> <br/>
                                 Food
                             </h5>
-                        </div>
-                        <div className='selection'>
+                        </Link>
+                        <Link to="/resources/clothing" className='selection'>
                             <h5>
                                 <FontAwesomeIcon icon={solid('shirt')} /> <br/>
                                 Clothing
                             </h5>
-                        </div>
-                        <div className='selection'>
+                        </Link>
+                        <Link to="/resources/housing" className='selection'>
                             <h5>
                                 <FontAwesomeIcon icon={solid('person-shelter')} /> <br/>
                                 Shelter
                             </h5>
-                        </div>
+                        </Link>
                         <hr/>
-                        <div className='selection'>
+                        <Link to="/resources/videos/career" className='selection'>
                             <h5>
                                 <FontAwesomeIcon icon={solid('briefcase')} /> <br/>
                                 Career Help
                             </h5>
-                        </div>
-                        <div className='selection'>
+                        </Link>
+                        <Link to="/resources/videos/finance" className='selection'>
                             <h5>
                                 <FontAwesomeIcon icon={solid('money-bill')} /> <br/>
                                 Financial Literacy
                             </h5>
-                        </div>
+                        </Link>
                     </Col>
                     <Col md="10" xs="9">
                         <Outlet/>

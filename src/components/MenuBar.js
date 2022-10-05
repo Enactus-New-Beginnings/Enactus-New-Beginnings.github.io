@@ -30,28 +30,36 @@ export default function MenuBar(){
           <NavbarToggler onClick={()=>{setOpen(!isOpen)}} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/profile">Profile</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/employment">Employment</NavLink>
-              </NavItem>
+            <Link to="/profile" style={{textDecoration: 'none'}}>
+                <NavItem>
+                  <NavLink>Profile</NavLink>
+                </NavItem>
+              </Link>
+              <Link to="/employment" style={{textDecoration: 'none'}}>
+                <NavItem>
+                  <NavLink>Employment</NavLink>
+                </NavItem>
+              </Link>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Resources
                 </DropdownToggle>
                 <DropdownMenu end>
-                  <Link to="/resources">
+                  <Link to="/resources/food" style={{textDecoration: 'none'}}>
                     <DropdownItem>
                       Food
                     </DropdownItem>
                   </Link>
-                  <DropdownItem>
-                    Clothing
-                  </DropdownItem>
-                  <DropdownItem>
-                    Shelter
-                  </DropdownItem>
+                  <Link to="/resources/clothing" style={{textDecoration: 'none'}}>
+                    <DropdownItem>
+                      Clothing
+                    </DropdownItem>
+                  </Link>
+                  <Link to="/resources/shelter" style={{textDecoration: 'none'}}>
+                    <DropdownItem>
+                      Shelter
+                    </DropdownItem>
+                  </Link>
                   <DropdownItem divider />
                   <DropdownItem>
                     Video

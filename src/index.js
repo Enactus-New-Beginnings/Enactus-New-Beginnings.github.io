@@ -25,7 +25,15 @@ const router = createBrowserRouter([
       },
       {
         path: "resources",
-        element: <ResourcesSideBar/>
+        element: <ResourcesSideBar/>,
+        children: [
+          {
+            path: "videos/:resourceName"
+          },
+          {
+            path: ":resourceName"
+          }
+        ]
       }
     ],
   },

@@ -15,7 +15,12 @@
     border-width: thin;
 }
 
-div.selection:hover {
+.selection {
+    text-decoration: none;
+    color: black;
+}
+
+.selection:hover {
     border: 1px solid #777;
   }
 

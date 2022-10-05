@@ -3,6 +3,7 @@ import '../styles/Home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { Button, Container, Row, Col } from 'reactstrap';
+import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -29,9 +30,13 @@ function App() {
                   <FontAwesomeIcon icon={solid('book')} />
                   <h3>Resources</h3>
                   <p>Here you can find a curriculum to guide your professional development, as well as other local resources: affordable housing, local support groups, transportation etc. </p>
-                  <Button color="success" size="lg" style={{margin:'2%'}}>Local Resources</Button>
+                  <Link to="/resources/food">
+                    <Button color="success" size="lg" style={{margin:'2%'}}>Local Resources</Button>
+                  </Link>
                   <br/>
-                  <Button color="success" size="lg" style={{margin:'2%'}}>Video Tutorials</Button>
+                  <Link to="/resources/videos/career">
+                    <Button color="success" size="lg" style={{margin:'2%'}}>Video Tutorials</Button>
+                  </Link>
                 </Col>
                 <Col sm="4">
                   <FontAwesomeIcon icon={solid('handshake')} />
