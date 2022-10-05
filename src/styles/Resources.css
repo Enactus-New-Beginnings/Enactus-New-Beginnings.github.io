@@ -24,3 +24,7 @@
     border: 1px solid #777;
   }
 
+  .table{
+    height: calc(94vh - 54px);
+    overflow-y: auto;
+  }

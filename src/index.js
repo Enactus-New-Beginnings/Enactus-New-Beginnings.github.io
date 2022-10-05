@@ -10,8 +10,10 @@ import reportWebVitals from './reportWebVitals';
 
 import MenuBar from './components/MenuBar';
 import ResourcesSideBar from './components/ResourcesSideBar';
+
 import Home from './routes/Home'
 import ErrorPage from './routes/ErrorPage'
+import ResourceTables from './routes/ResourceTables';
 
 const router = createBrowserRouter([
   {
@@ -31,7 +33,8 @@ const router = createBrowserRouter([
             path: "videos/:resourceName"
           },
           {
-            path: ":resourceName"
+            path: ":resourceName",
+            element: <ResourceTables/>
           }
         ]
       }

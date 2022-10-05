@@ -44,9 +44,8 @@ export default function ResourcesSideBar(){
                             </h5>
                         </Link>
                     </Col>
-                    <Col md="10" xs="9">
+                    <Col md="10" xs="9" style={{paddingTop: '2%', height: '95%', overflow: 'hidden'}}>
                         <Outlet/>
-                        <h1>test</h1>
                     </Col>
                 </Row>
             </Container>
