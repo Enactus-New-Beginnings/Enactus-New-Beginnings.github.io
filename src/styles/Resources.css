@@ -1,0 +1,21 @@
+.resource-header{
+    text-align: center;
+    background-image: url("../img/foggy.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: calc(100vh - 54px);
+    background-color: rgb(233, 234, 235, 0.4);
+    border-style: none solid none none;
+    border-width: thin;
+}
+
+div.selection:hover {
+    border: 1px solid #777;
+  }
+

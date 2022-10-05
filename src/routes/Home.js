@@ -14,7 +14,6 @@ function App() {
             <p style={{color: 'black'}}>Our mission is to help formerly incarcerated individuals secure employment, establish strong relationships with mentors, and gain access to local resources in order to ease their transition from prison.</p>
         </div>
       </header>
-      <body>
     <div className='features'>
         <Container>
             <Row>
@@ -42,8 +41,7 @@ function App() {
                 </Col>
             </Row>
         </Container>
-    </div>     
-      </body>
+    </div>    
     </div>
   );
 }

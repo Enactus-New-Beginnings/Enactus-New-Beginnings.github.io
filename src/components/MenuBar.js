@@ -11,34 +11,41 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
-import { Outlet } from "react-router-dom";
+import { Outlet, Link, useLocation } from "react-router-dom";
 import '../styles/MenuBar.css';
 import logo from '../img/logo.png';
 
-  export default function MenuBar(){
+export default function MenuBar(){
     const [isOpen, setOpen] = React.useState(false)
+    const location = useLocation();
     return(
       <>
-       <div className='sticky'>
-        <Navbar light expand="md">
-          <NavbarBrand href="/"><img src={logo} className="top-logo" alt="logo" /></NavbarBrand>
+       <div className={location.pathname.includes("resources")?"sticky":"fixed"}>
+        <Navbar color={location.pathname.includes("resources")?"light":""} light expand="md">
+          <Link to="/">
+            <NavbarBrand>
+              <img src={logo} className="top-logo" alt="logo" />
+            </NavbarBrand>
+          </Link>
           <NavbarToggler onClick={()=>{setOpen(!isOpen)}} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Profile</NavLink>
+                <NavLink href="/profile">Profile</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">Employment</NavLink>
+                <NavLink href="/employment">Employment</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Resources
                 </DropdownToggle>
                 <DropdownMenu end>
-                  <DropdownItem>
-                    Food
-                  </DropdownItem>
+                  <Link to="/resources">
+                    <DropdownItem>
+                      Food
+                    </DropdownItem>
+                  </Link>
                   <DropdownItem>
                     Clothing
                   </DropdownItem>
@@ -47,7 +54,7 @@ import logo from '../img/logo.png';
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    Video Tutorials
+                    Video
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

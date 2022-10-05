@@ -5,11 +5,11 @@ import './styles/index.css';
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
 } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 
 import MenuBar from './components/MenuBar';
+import ResourcesSideBar from './components/ResourcesSideBar';
 import Home from './routes/Home'
 import ErrorPage from './routes/ErrorPage'
 
@@ -23,6 +23,10 @@ const router = createBrowserRouter([
         path: "",
         element: <Home />,
       },
+      {
+        path: "resources",
+        element: <ResourcesSideBar/>
+      }
     ],
   },
 ]);
