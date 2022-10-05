@@ -14,32 +14,32 @@ export default function ResourcesSideBar(){
                     <Col md="2" xs="3" className="sidebar">
                         <Link to="/resources/food" className='selection'>
                             <h5>
-                                <FontAwesomeIcon icon={solid('utensils')} /> <br/>
+                                <FontAwesomeIcon icon={solid('utensils')} style={{paddingRight: '2%'}}/> 
                                 Food
                             </h5>
                         </Link>
                         <Link to="/resources/clothing" className='selection'>
                             <h5>
-                                <FontAwesomeIcon icon={solid('shirt')} /> <br/>
+                                <FontAwesomeIcon icon={solid('shirt')} style={{paddingRight: '2%'}}/> 
                                 Clothing
                             </h5>
                         </Link>
                         <Link to="/resources/housing" className='selection'>
                             <h5>
-                                <FontAwesomeIcon icon={solid('person-shelter')} /> <br/>
+                                <FontAwesomeIcon icon={solid('person-shelter')} style={{paddingRight: '2%'}}/> 
                                 Shelter
                             </h5>
                         </Link>
                         <hr/>
                         <Link to="/resources/videos/career" className='selection'>
                             <h5>
-                                <FontAwesomeIcon icon={solid('briefcase')} /> <br/>
+                                <FontAwesomeIcon icon={solid('briefcase')} style={{paddingRight: '2%'}}/> 
                                 Career Help
                             </h5>
                         </Link>
                         <Link to="/resources/videos/finance" className='selection'>
                             <h5>
-                                <FontAwesomeIcon icon={solid('money-bill')} /> <br/>
+                                <FontAwesomeIcon icon={solid('money-bill')} style={{paddingRight: '2%'}}/> 
                                 Financial Literacy
                             </h5>
                         </Link>

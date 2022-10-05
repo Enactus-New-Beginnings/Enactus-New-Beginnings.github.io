@@ -8,16 +8,18 @@
 .sidebar{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     height: calc(100vh - 54px);
-    background-color: rgb(233, 234, 235, 0.4);
+    background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0.3), rgba(233, 234, 234, 1.0) , rgba(255, 0, 0, 0.3));
     border-style: none solid none none;
     border-width: thin;
+    justify-content: center;
+    align-items: center;
 }
 
 .selection {
     text-decoration: none;
     color: black;
+    padding: 3%;
 }
 
 .selection:hover {
@@ -27,5 +29,5 @@
   .table{
     height: calc(94vh - 54px);
     overflow-y: auto;
-    background-color: rgb(255, 255, 255, 0.4);
+    background-color: rgb(255, 255, 255, 0.5);
   }
