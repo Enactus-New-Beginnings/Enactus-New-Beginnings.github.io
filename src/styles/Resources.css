@@ -26,8 +26,15 @@
     border: 1px solid #777;
   }
 
+.selected {
+    text-decoration: none;
+    color: black;
+    border: 1px solid rgb(229, 114, 0);
+    padding: 3%;
+}
+
   .table{
-    height: calc(94vh - 54px);
+    height: calc(90vh - 89px);
     overflow-y: auto;
-    background-color: rgb(255, 255, 255, 0.5);
+    background-color: rgb(255, 255, 255, 0.4);
   }

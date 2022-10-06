@@ -34,7 +34,10 @@ const router = createBrowserRouter([
           },
           {
             path: ":resourceName",
-            element: <ResourceTables/>
+            element: <ResourceTables/>,
+            loader: async ({ params }) => {
+              return fetch(`https://us-central1-newbeginnings-7fed9.cloudfunctions.net/widgets/resources/${params.resourceName}`);
+            },
           }
         ]
       }

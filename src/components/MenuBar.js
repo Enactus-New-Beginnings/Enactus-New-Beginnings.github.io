@@ -55,7 +55,7 @@ export default function MenuBar(){
                       Clothing
                     </DropdownItem>
                   </Link>
-                  <Link to="/resources/shelter" style={{textDecoration: 'none'}}>
+                  <Link to="/resources/housing" style={{textDecoration: 'none'}}>
                     <DropdownItem>
                       Shelter
                     </DropdownItem>
