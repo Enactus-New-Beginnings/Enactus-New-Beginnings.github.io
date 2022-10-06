@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './styles/index.css';
 
 import {
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
@@ -19,7 +19,7 @@ import Profile from './routes/Profile';
 
 const videos=require('./components/VideoData')
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <MenuBar/>,

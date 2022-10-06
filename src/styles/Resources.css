@@ -1,6 +1,6 @@
 .resource-header{
     text-align: center;
-    background-image: url("../img/resource-bg.png");
+    background-image: url("../img/resource-bg.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -36,5 +36,5 @@
   .table{
     height: calc(90vh - 89px);
     overflow-y: auto;
-    background-color: rgb(255, 255, 255, 0.4);
+    background-color: rgb(255, 255, 255, 0.45);
   }
