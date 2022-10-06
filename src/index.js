@@ -14,6 +14,9 @@ import ResourcesSideBar from './components/ResourcesSideBar';
 import Home from './routes/Home'
 import ErrorPage from './routes/ErrorPage'
 import ResourceTables from './routes/ResourceTables';
+import VideoGallery from './routes/VideoGallery';
+
+const videos=require('./components/VideoData')
 
 const router = createBrowserRouter([
   {
@@ -30,7 +33,11 @@ const router = createBrowserRouter([
         element: <ResourcesSideBar/>,
         children: [
           {
-            path: "videos/:resourceName"
+            path: "videos/:resourceName",
+            element: <VideoGallery/>,
+            loader: (({params})=>{
+              return videos[params.resourceName]
+            })
           },
           {
             path: ":resourceName",

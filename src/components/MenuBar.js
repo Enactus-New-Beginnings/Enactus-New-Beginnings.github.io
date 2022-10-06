@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   Collapse,
   Navbar,
@@ -12,6 +13,10 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 import { Outlet, Link, useLocation } from "react-router-dom";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+
 import '../styles/MenuBar.css';
 import logo from '../img/logo.png';
 
@@ -61,9 +66,16 @@ export default function MenuBar(){
                     </DropdownItem>
                   </Link>
                   <DropdownItem divider />
-                  <DropdownItem>
-                    Video
-                  </DropdownItem>
+                  <Link to="/resources/videos/career" style={{textDecoration: 'none'}}>
+                    <DropdownItem>
+                      Career Help <FontAwesomeIcon icon={solid('video')} />
+                    </DropdownItem>
+                  </Link>
+                  <Link to="/resources/videos/finance" style={{textDecoration: 'none'}}>
+                    <DropdownItem>
+                      Financial Literacy <FontAwesomeIcon icon={solid('video')} />
+                    </DropdownItem>
+                  </Link>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>

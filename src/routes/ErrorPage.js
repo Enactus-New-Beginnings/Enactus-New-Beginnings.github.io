@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import '../styles/Home.css';
 import '../styles/Error.css'
 
-function App() {
+function ErrorPage() {
   return (
     <div className="App">
       <header className="Error-header">
@@ -18,4 +18,4 @@ function App() {
   );
 }
 
-export default App;
+export default ErrorPage;
