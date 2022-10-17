@@ -19,16 +19,20 @@ function App() {
         <Container>
             <Row>
                 <Col sm="4">
-                    <FontAwesomeIcon icon={solid('briefcase')} />
-                    <h3>Employment</h3>
+                    <h3>
+                      <FontAwesomeIcon icon={solid('briefcase')}/>
+                      <br/>
+                      Employment
+                    </h3>
                     <p>COMING SOON: Reach out to employers who don’t discriminate based on past convictions. Create an account and upload your resume to get matched with oppurtunities most relevant to you!</p>
                     <Button color="primary" size="lg" disabled style={{margin:'2%'}}>Upload Your Resume</Button>
                     <br/>
                     <Button color="primary" size="lg" disabled style={{margin:'2%'}}>View Employers</Button>
                 </Col>
                 <Col sm="4">
-                  <FontAwesomeIcon icon={solid('book')} />
-                  <h3>Resources</h3>
+                  <h3>
+                    <FontAwesomeIcon icon={solid('book')} /> <br/>
+                    Resources</h3>
                   <p>Here you can find a curriculum to guide your professional development, as well as other local resources: affordable housing, local support groups, transportation etc. </p>
                   <Link to="/resources/food">
                     <Button color="success" size="lg" style={{margin:'2%'}}>Local Resources</Button>
@@ -39,8 +43,9 @@ function App() {
                   </Link>
                 </Col>
                 <Col sm="4">
-                  <FontAwesomeIcon icon={solid('handshake')} />
-                  <h3>Mentorship</h3>
+                  <h3>
+                    <FontAwesomeIcon icon={solid('handshake')} /> <br/>
+                    Mentorship</h3>
                   <p>Connect with like-minded people who turned their lives around upon re-entering society. Studies show that people with strong mentors are twice as likely to get employed. </p>
                   <Button color="warning" size="lg" style={{margin:'2%'}} disabled>Coming Soon!</Button>
                 </Col>
