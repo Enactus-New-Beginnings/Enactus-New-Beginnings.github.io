@@ -9,7 +9,7 @@ export default function Profile(){
         <div className="Profile-header">
             <div className='Login-box'>
                 <h1>Log In to New Beginnings</h1>
-                <p style={{textAlign:'center'}}>Don't have an account? <button className="link">Click here</button> to sign up</p>
+                <p style={{textAlign:'center'}}>Don't have an account? <button className="link" >Click here</button> to sign up</p>
             <Form>
                 <FormGroup>
                     <Label for="email" size="lg">Email</Label>
