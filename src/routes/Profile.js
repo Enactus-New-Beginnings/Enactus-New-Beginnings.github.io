@@ -5,11 +5,15 @@ import '../styles/Profile.css'
 
 export default function Profile(){
     const [email, setEmail] = React.useState("")
+    const [password, setPassword] = React.useState("")
+    const [state, setState] = React.useState(true)
     return (
         <div className="Profile-header">
             <div className='Login-box'>
                 <h1>Log In to New Beginnings</h1>
-                <p style={{textAlign:'center'}}>Don't have an account? <button className="link" >Click here</button> to sign up</p>
+                <p style={{textAlign:'center'}}>Don't have an account? <button className="link"  onClick={() =>{ 
+                    setState(!state) }}>Click here</button> to sign up</p>
+                    
             <Form>
                 <FormGroup>
                     <Label for="email" size="lg">Email</Label>
@@ -19,14 +23,30 @@ export default function Profile(){
                 </FormGroup>
                 <FormGroup>
                     <Label for="password" size="lg">Password</Label>
-                    <Input type="password" name="password" id="password" placeholder="enter password" bsSize="lg"/>
+                    <Input type="password" name="password" id="password" placeholder="enter password" bsSize="lg" onChange={(e) => {
+                        setPassword(e.target.value)
+                    }} />
+                    {
+                        !state?
+                        <div>
+                            <Label for="Confirm Password" size="lg">Confirm Password</Label>
+                            <Input type="Confirm Password" name="Confirm Password" id="Confirm Password" placeholder="confirm password" bsSize="lg" onChange={(e) => {
+                                setConfirmedPassword(e.target.value)
+                            }} />
+                        </div>:<></>
+                    }
                     <p style={{fontSize: 15}}>
                         Forgot password? <button className="link">Click here.</button>
+                            
                     </p>
+                    
                 </FormGroup>
                 <Button size="lg" className="center" onClick={()=>{
-                    alert(email)
+                    // alert(email + "\n" + password)
+                    // alert(state)
+                    
                 }}>Submit</Button>
+                
             </Form>
             </div>
         </div>
