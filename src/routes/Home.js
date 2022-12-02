@@ -25,7 +25,9 @@ function App() {
                       Employment
                     </h3>
                     <p>COMING SOON: Reach out to employers who don’t discriminate based on past convictions. Create an account and upload your resume to get matched with oppurtunities most relevant to you!</p>
-                    <Button color="primary" size="lg" disabled style={{margin:'2%'}}>Upload Your Resume</Button>
+                    <Button color="primary" onClick={()=>{
+                      //Upload resume code here
+                    }} size="lg" style={{margin:'2%'}}>Upload Your Resume</Button>
                     <br/>
                     <Button color="primary" size="lg" disabled style={{margin:'2%'}}>View Employers</Button>
                 </Col>

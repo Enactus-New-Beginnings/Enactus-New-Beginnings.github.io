@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import {firebase} from '../firebase'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
@@ -11,14 +11,25 @@ export default function Profile(){
     const [password, setPassword] = React.useState("")
     const [state, setState] = React.useState(true)
     const [confirmPass, setConfirmedPassword] = React.useState("")
+    const [showForgotPasswordModal, toggleModal] = React.useState(false);
     const [auth] = React.useState(getAuth(firebase));
     
     return (
         <div className="Profile-header">
             <div className='Login-box'>
-                <h1>Log In to New Beginnings</h1>
-                <p style={{textAlign:'center'}}>Don't have an account? <button className="link" onClick={() =>{ 
-                    setState(!state) }}>Click here</button> to sign up</p>  
+            <Modal isOpen={showForgotPasswordModal} toggle={()=>{toggleModal(!showForgotPasswordModal)}}>
+                <ModalHeader toggle={()=>{toggleModal(!showForgotPasswordModal)}}>Modal title</ModalHeader>
+                <ModalBody>
+                    Text
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" >Submit</Button>{' '}
+                    <Button color="secondary" onClick={()=>{toggleModal(!showForgotPasswordModal)}}>Cancel</Button>
+                </ModalFooter>
+            </Modal>
+            <h1>Log In to New Beginnings</h1>
+            <p style={{textAlign:'center'}}>Don't have an account? <button className="link" onClick={() =>{ 
+                setState(!state) }}>Click here</button> to sign up</p>  
             <Form>
                 <FormGroup>
                     <Label for="email" size="lg">Email</Label>
@@ -41,7 +52,9 @@ export default function Profile(){
                         </div>:<></>
                     }
                     <p style={{fontSize: 15}}>
-                        Forgot password? <button className="link">Click here.</button>    
+                        Forgot password? <button className="link" type="button" onClick={()=>{
+                            toggleModal(true)
+                        }}>Click here.</button>    
                     </p>
                 </FormGroup>
                 <Button size="lg" className="center" onClick={()=>{
@@ -73,7 +86,7 @@ export default function Profile(){
                                 alert("Not secure")
                         }   
                     }          
-                }}>Submit</Button>  
+                }}>Submit</Button>
             </Form>
             </div>
         </div>
