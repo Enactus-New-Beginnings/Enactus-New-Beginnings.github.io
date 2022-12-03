@@ -11,7 +11,8 @@ const firebaseConfig = {
   measurementId: "G-FVYZBPF2XJ"
 };
 /**
- * 
+ * A singleton FirebaseApp instance to be shared across the application
+ * @see initializeApp
  */
 const firebase = initializeApp(firebaseConfig);
 

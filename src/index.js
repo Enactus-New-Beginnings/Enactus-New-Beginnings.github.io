@@ -19,6 +19,9 @@ import Profile from './routes/Profile';
 
 const videos=require('./components/VideoData')
 
+/**
+ * Enables client-side routing for our web app. We take advantage of v6 features such as loaders to provide data to our resource tables before rendering. A helpful tutorial for quickly learning React Router can be found [here.]{@link https://reactrouter.com/en/main/start/tutorial}
+ */
 const router = createBrowserRouter([
   {
     path: "/",

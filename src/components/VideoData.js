@@ -1,3 +1,7 @@
+/**
+ * An object which maps string (video category) to array (video metadata)
+ * @module VideoData
+ */
 module.exports={
     "finance": [{
         imgRef: "https://i.ytimg.com/vi/jJddYjx_Bq0/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAl9b4bNs0VKwbSnDdrwi3nV8596Q", 

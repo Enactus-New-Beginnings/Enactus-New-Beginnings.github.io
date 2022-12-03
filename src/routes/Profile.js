@@ -6,11 +6,15 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 
 import '../styles/Profile.css'
 
+/**
+ * Renders the user signup/login page if they are not authenticated, otherwise renders the user's profile
+ * @module Profile
+ */
 export default function Profile(){
     const [email, setEmail] = React.useState("")
     const [password, setPassword] = React.useState("")
-    const [state, setState] = React.useState(true)
-    const [confirmPass, setConfirmedPassword] = React.useState("")
+    const [loginState, toggleLoginState] = React.useState(true)
+    const [confirmPassword, setConfirmedPassword] = React.useState("")
     const [showForgotPasswordModal, toggleModal] = React.useState(false);
     const [auth] = React.useState(getAuth(firebase));
     
@@ -29,7 +33,7 @@ export default function Profile(){
             </Modal>
             <h1>Log In to New Beginnings</h1>
             <p style={{textAlign:'center'}}>Don't have an account? <button className="link" onClick={() =>{ 
-                setState(!state) }}>Click here</button> to sign up</p>  
+                toggleLoginState(!loginState) }}>Click here</button> to sign up</p>  
             <Form>
                 <FormGroup>
                     <Label for="email" size="lg">Email</Label>
@@ -43,7 +47,7 @@ export default function Profile(){
                         setPassword(e.target.value)
                     }} />
                     {
-                        !state?
+                        !loginState?
                         <div>
                             <Label for="Confirm Password" size="lg">Confirm Password</Label>
                             <Input type="password" name="Confirm Password" id="confirm" placeholder="re-enter password" bsSize="lg" onChange={(e) => {
@@ -58,69 +62,62 @@ export default function Profile(){
                     </p>
                 </FormGroup>
                 <Button size="lg" className="center" onClick={()=>{
-                    
-                    if(state)
-                    {
-                        signInWithEmailAndPassword(auth, email, password)
-                        .then((userCredential) => {
-                            // Signed in 
-                            const user = userCredential.user;
-                            // ...
-                        })
-                        .catch((error) => {
-                            const errorCode = error.code;
-                            const errorMessage = error.message;
-                        })
-                    }
-                    if(!state)
-                    {
-                        if(password !== confirmPass)            //checks if password and the confirmed password match
-                            alert("Passwords don't match")
-                        if(password === confirmPass){
-                            let length = 0 
-                            let upper = 0
-                            let lower = 0
-                            let containsNum = false
-
-                            for (let i = 0; i < password.length; i++)               //goes through the password and makes sure it's secure
-                            {   
-                                length++
-                                if(password[i] === password[i].toUpperCase())
-                                {   
-                                    if(!(/[0-9]/.test(password[i])))
-                                        upper++
-                                }
-                                if(password[i] === password[i].toLowerCase())
-                                {
-                                    if(!(/[0-9]/.test(password[i])))
-                                        lower++
-                                }
-                                if(/[0-9]/.test(password[i]))
-                                    containsNum=true
-                            }
-
-                            if(length >= 8 && upper > 0 && lower > 0 && containsNum)
-                            {
-                                alert("Good password")
-                                createUserWithEmailAndPassword(auth, email, password)
-                                .then((userCredential) => {
-                                    // Signed in 
-                                    const user = userCredential.user;
-                                    // ...
-                                })
-                                .catch((error) => {
-                                    const errorCode = error.code;
-                                    const errorMessage = error.message;
-                                    // ..
-                                })
-                            }
-                            else
-                                alert("Not secure")
-                        }   
-                    }          
+                       handleAuthentication(auth,loginState,email,password,confirmPassword)  
                 }}>Submit</Button>
             </Form>
             </div>
         </div>
     )
+}
+
+/**
+ * Checks whether a password is secure: in this case, whether it is at least 8 characters long and contains at least one uppercase letter, lowercase letter and number
+ * @param {string} password Password to check
+ * @returns boolean value of whether or not password is secure
+ */
+ function checkForStrongPassword(password){
+    return password.length >= 8 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password)
+}
+/**
+ * Handles user authentication: attempts to login with Firebase if client is in login state, otherwise tries to sign them up if password is secure.
+ * @param {Auth} auth Firebase auth object
+ * @param {boolean} loginState True if in loginflow, false otherwise
+ * @param {string} email User inputted email
+ * @param {string} password User inputted password
+ * @param {string} confirmPassword User inputted "confirm password"
+ */
+function handleAuthentication(auth, loginState, email, password, confirmPassword){
+    if(loginState) {
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+        })
+    }
+    else {
+        if(password !== confirmPassword)
+            alert("Passwords don't match")
+        else {
+            if(checkForStrongPassword(password)) {
+                createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    // ..
+                })
+            }
+            else
+                alert("Not secure")
+        }   
+    }     
 }
