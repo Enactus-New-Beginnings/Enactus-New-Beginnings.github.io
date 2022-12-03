@@ -2,8 +2,12 @@ import React from 'react';
 import { Table } from 'reactstrap';
 import { useLoaderData, useLocation } from 'react-router-dom'
 import '../styles/Resources.css'
-
-const capitalizeFirstLetter=(s)=>{
+/**
+ * Capitalize the first letter of a string
+ * @param {string} s 
+ * @returns The string with its first letter capitlalized
+ */
+function capitalizeFirstLetter(s){
     return s[0].toUpperCase()+s.substring(1)
 }
 
