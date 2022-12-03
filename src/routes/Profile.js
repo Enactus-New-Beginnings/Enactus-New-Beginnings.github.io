@@ -58,12 +58,30 @@ export default function Profile(){
                     </p>
                 </FormGroup>
                 <Button size="lg" className="center" onClick={()=>{
-                    if(!state){
+                    
+                    if(state)
+                    {
+                        signInWithEmailAndPassword(auth, email, password)
+                        .then((userCredential) => {
+                            // Signed in 
+                            const user = userCredential.user;
+                            // ...
+                        })
+                        .catch((error) => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                        })
+                    }
+                    if(!state)
+                    {
                         if(password !== confirmPass)            //checks if password and the confirmed password match
                             alert("Passwords don't match")
                         if(password === confirmPass){
-                            let length, upper, lower = 0
+                            let length = 0 
+                            let upper = 0
+                            let lower = 0
                             let containsNum = false
+
                             for (let i = 0; i < password.length; i++)               //goes through the password and makes sure it's secure
                             {   
                                 length++
@@ -80,8 +98,22 @@ export default function Profile(){
                                 if(/[0-9]/.test(password[i]))
                                     containsNum=true
                             }
+
                             if(length >= 8 && upper > 0 && lower > 0 && containsNum)
+                            {
                                 alert("Good password")
+                                createUserWithEmailAndPassword(auth, email, password)
+                                .then((userCredential) => {
+                                    // Signed in 
+                                    const user = userCredential.user;
+                                    // ...
+                                })
+                                .catch((error) => {
+                                    const errorCode = error.code;
+                                    const errorMessage = error.message;
+                                    // ..
+                                })
+                            }
                             else
                                 alert("Not secure")
                         }   
