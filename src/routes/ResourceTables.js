@@ -40,9 +40,17 @@ export default function ResourceTables(){
                                                 if(value!=="N/A")
                                                     return (<td><a target="_blank" rel="noopener noreferrer" href={value} >Link</a></td>)
                                             }
+                                            //return (<td>{value}</td>)
+                                            
+                                             if(key.toLowerCase().includes('address')){
+                                                 if(value!=="N/A")
+                                                     return (<td><a target="_blank" rel="noopener noreferrer" href={"https://www.google.com/maps/dir/" + value}> {value} </a></td>)
+                                            }
                                             return (<td>{value}</td>)
-                                        })
+                                            }
+                                        )
                                     }
+
                                 </tr>)
                             })
                         }

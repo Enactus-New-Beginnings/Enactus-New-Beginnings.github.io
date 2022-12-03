@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<body>
+    <h1>Research/Outreach Portal</h1> 
+
+    <input type = "checkbox" id= "food"/> Food <br/>
+    <input type = "checkbox" id= "clothing"/> Clothing <br/>
+    <input type = "checkbox" id= "shelter"/> Shelter <br/>
+    <br/> <button onClick = "onSubmit()" >Submit</button> 
+
+    <script>
+        function onSubmit(){
+            let food = document.getElementById("food").checked
+            let clothing = document.getElementById("clothing").checked
+            let shelter = document.getElementById("shelter").checked
+            
+            if(food&&clothing&&shelter)
+            alert("All Selected")
+        }
+    </script>
+</body>
