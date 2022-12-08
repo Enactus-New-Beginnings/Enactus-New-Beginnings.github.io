@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDBiPqXXUfwbhbPkeWKLlspMwKVwouw4xw",
+  apiKey: "AIzaSyA21PQebHi9Aj6b2CbLGABokAxeinEAbro",
   authDomain: "newbeginnings-7fed9.firebaseapp.com",
   databaseURL: "https://newbeginnings-7fed9-default-rtdb.firebaseio.com",
   projectId: "newbeginnings-7fed9",

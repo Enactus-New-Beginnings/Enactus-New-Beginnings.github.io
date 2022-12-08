@@ -23,8 +23,8 @@ export default function VideoGallery(){
 
 /**
  * Create a gallery of videos from an array containing additional metadata such as description and link
- * @param {Array} videos List of videos to create tables from, each element also contains video metadata
- * @see VideoData
+ * @param {VideoMetaData[]} videos List of videos to create tables from, each element also contains video metadata
+ * @see VideoMetaData
  */
 function createGalleryFromVideos(videos){
     return videos.map(videoInfo=>{
