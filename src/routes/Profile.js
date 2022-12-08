@@ -1,8 +1,10 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import {firebase} from '../firebase'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
+import ModalPopup from "../components/ModalPopup";
 
 import '../styles/Profile.css'
 
@@ -16,21 +18,43 @@ export default function Profile(){
     const [loginState, toggleLoginState] = React.useState(true)
     const [confirmPassword, setConfirmedPassword] = React.useState("")
     const [showForgotPasswordModal, toggleModal] = React.useState(false);
+    const [showEmailSentModal, toggleEmailSent] = React.useState(false);
     const [auth] = React.useState(getAuth(firebase));
     
     return (
         <div className="Profile-header">
             <div className='Login-box'>
-            <Modal isOpen={showForgotPasswordModal} toggle={()=>{toggleModal(!showForgotPasswordModal)}}>
-                <ModalHeader toggle={()=>{toggleModal(!showForgotPasswordModal)}}>Modal title</ModalHeader>
-                <ModalBody>
-                    Text
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="primary" >Submit</Button>{' '}
-                    <Button color="secondary" onClick={()=>{toggleModal(!showForgotPasswordModal)}}>Cancel</Button>
-                </ModalFooter>
-            </Modal>
+
+            <ModalPopup showModal={showForgotPasswordModal} toggleModal={()=>{toggleModal(!showForgotPasswordModal)}}
+             header={"Forgot Password?"} 
+             body={<div>
+                <p>Enter the email address you made your account with and press submit to receive a password reset email.</p>
+                <Form>
+                    <FormGroup>
+                      <Input type="email" placeholder="example@email.com" value={email}  onChange={(e) => {
+                        setEmail(e.target.value)
+                    }}/>
+                    </FormGroup>
+                </Form>
+            </div>
+            }
+            footer={<div>
+                <Button color="primary" onClick={()=>{
+                    toggleEmailSent(true)
+                }}>Submit</Button>{' '}
+                <Button color="secondary" onClick={()=>{toggleModal(!showForgotPasswordModal)}}>Cancel</Button>
+            </div>
+            }/>
+            <ModalPopup showModal={showEmailSentModal} toggleModal={()=>{toggleEmailSent(!showEmailSentModal)}}
+             header={"Check Your Inbox"} 
+             body={<div>
+                <p>If we have your email on file, we'll send a password reset email shortly.</p>
+            </div>
+            }
+            footer={<div>
+                <Button color="primary" onClick={()=>{toggleEmailSent(!showEmailSentModal)}}>OK</Button>
+            </div>
+            }/>
             <h1>Log In to New Beginnings</h1>
             <p style={{textAlign:'center'}}>Don't have an account? <button className="link" onClick={() =>{ 
                 toggleLoginState(!loginState) }}>Click here</button> to sign up</p>  
@@ -97,6 +121,7 @@ function handleAuthentication(auth, loginState, email, password, confirmPassword
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            alert(errorCode, errorMessage)
         })
     }
     else {

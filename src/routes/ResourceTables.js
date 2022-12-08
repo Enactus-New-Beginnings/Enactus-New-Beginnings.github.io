@@ -75,7 +75,7 @@ function mapDataToRows(data){
                     }
                      if(key.toLowerCase().includes('address')){
                          if(value!=="N/A")
-                             return (<td><a target="_blank" rel="noopener noreferrer" href={"https://www.google.com/maps/dir/" + value}> {value} </a></td>)
+                             return (<td><a target="_blank" rel="noopener noreferrer" href={"https://www.google.com/maps/dir//" + value}> {value} </a></td>)
                     }
                     return (<td>{value}</td>)
                     }

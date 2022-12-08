@@ -5,6 +5,11 @@
 /.pnp
 .pnp.js
 
+/out
+/out/fonts
+/out/scripts
+/out/styles
+
 # testing
 /coverage
 
