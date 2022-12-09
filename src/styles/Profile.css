@@ -3,6 +3,20 @@
     background-size: cover;
     background-position: center;
     height: 100vh;
+    padding-top: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+
+  .Login-header {
+    background-image: url("../img/mountains.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
     padding: 2%;
     display: flex;
     flex-direction: column;
@@ -20,9 +34,36 @@
     padding: 2%;
   }
 
+  .Top-profile-container{
+    border-radius: 10px;
+    background-image: linear-gradient(to right, rgba(70, 167, 252, 0.4), rgba(171, 247, 255, 0.4) , rgba(70, 167, 252, 0.4));
+    display: flex;
+    flex-direction: row;
+    margin: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+
+  .Top-profile-textCols{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .Top-profile-textRows{
+    display: flex;
+    flex-direction: row;
+    margin: 3%;
+  }
+
   h1{
     text-align: center;
     color: rgb(2, 32, 127);
+  }
+
+  h1.white{
+    text-align: center;
+    color: rgb(77, 94, 111);
   }
   button.link {
     background: none;
@@ -40,4 +81,13 @@
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+  }
+  .avatar{
+    align-self: center;
+    border-radius: 50%;
+    height: 128px;
+    width: 128px;
+  }
+  .spacing{
+    margin:2%;
   }

@@ -5,6 +5,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 // import ModalPopup from "../components/ModalPopup";
 import LoginHandler from '../components/LoginHandler'
+import UserProfile from "../components/UserProfile";
 
 import '../styles/Profile.css'
 
@@ -27,8 +28,8 @@ export default function Profile(){
     }, [user, auth])
     
     return (
-        <div className="Profile-header">
-            {user?<></>:<LoginHandler/>}
+        <div>
+            {user?<UserProfile user={user} auth={auth}/>:<LoginHandler/>}
         </div>
     )
 }

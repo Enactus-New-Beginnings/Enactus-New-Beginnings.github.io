@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import {firebase} from '../firebase'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 
 import ModalPopup from "../components/ModalPopup";
 
@@ -42,7 +42,7 @@ export default function Profile(){
      * @returns boolean value of whether string is a valid email address
      */
     function checkForValidEmail(email){
-        return email.split("@").length===2 && email.split("a")[1].split(".").length===2
+        return email.split("@").length===2 && email.split("@")[1].split(".").length===2
     }
 
     /**
@@ -91,7 +91,8 @@ export default function Profile(){
     }
     
     return (
-            <div className='Login-box'>
+        <div className="Login-header">
+        <div className='Login-box'>
             <ModalPopup showModal={showForgotPasswordModal} toggleModal={()=>{toggleModal(!showForgotPasswordModal)}}
              header={"Forgot Password?"} 
              body={<div>
@@ -108,7 +109,11 @@ export default function Profile(){
             footer={<div>
                 <Button color="primary" onClick={()=>{
                     if(checkForValidEmail(email)){
-                        generateModal("Check Your Inbox", "If we have your email on file, we'll send a password reset email shortly.")
+                        sendPasswordResetEmail(auth,email).then(()=>{
+                            generateModal("Check Your Inbox", "If we have your email on file, we'll send a password reset email shortly.")  
+                        }).catch((err)=>{
+                            generateModal("Something went wrong", err.message)
+                        })
                     } else{
                         generateModal("Invalid Email", "Please make sure the inputted email is valid.")
                     }
@@ -132,7 +137,7 @@ export default function Profile(){
             <Form>
                 <FormGroup>
                     <Label for="email" size="lg">Email</Label>
-                    <Input type="email" name="email" id="email" placeholder="email@example.com" bsSize="lg" onChange={(e) => {
+                    <Input type="email" name="email" id="email" value={email} placeholder="email@example.com" bsSize="lg" onChange={(e) => {
                         setEmail(e.target.value)
                     }}/>
                 </FormGroup>
@@ -161,5 +166,6 @@ export default function Profile(){
                 }}>Submit</Button>
             </Form>
             </div>
+        </div>
     )
 }
