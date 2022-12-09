@@ -1,6 +1,9 @@
 import React from "react";
+import {firebase} from '../firebase'
+
 import { Input, Button } from 'reactstrap';
 import { signOut } from "firebase/auth";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 import '../styles/Profile.css'
 
@@ -9,6 +12,7 @@ import '../styles/Profile.css'
  * @module Profile
  */
 export default function UserProfile(props){
+    const [storage] = React.useState(getStorage(firebase));
 
     return (
         <div className='Profile-header'>
@@ -27,6 +31,7 @@ export default function UserProfile(props){
                     </div>
                 </div>
             </div>
+            <Button>⬆</Button>
             <Button onClick={()=>{
                 signOut(props.auth)
             }}>Logout</Button>
