@@ -20,6 +20,25 @@ export default function UserProfile(props){
         setFile(event.target.files[0]);
     }
 
+    function handleUpload() {
+    if (!file) {
+            alert("Please choose a file first!")
+        }
+        const storageRef = ref(storage, `/files/${file.name}`)
+        const uploadTask = uploadBytesResumable(storageRef, file);
+    
+
+    uploadTask.on(React, (snapshot) =>
+        (err) => console.log(err),
+        () => 
+        {
+            getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                console.log(url);
+            });
+        }); 
+
+    }
+
     return (
         <div className='Profile-header'>
             <h1 className="white">Welcome Back, {props.user.email}!</h1>
@@ -39,7 +58,7 @@ export default function UserProfile(props){
             </div>
 
             <input type="file" onChange={handleChange}/>
-            <button>Upload to Firebase</button>
+            <button onClick={handleUpload}>Upload to Firebase</button>
             
 
             <Button>⬆</Button>
@@ -48,4 +67,4 @@ export default function UserProfile(props){
             }}>Logout</Button>
         </div>
     )
-}
+        }
