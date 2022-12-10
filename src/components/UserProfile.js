@@ -15,6 +15,12 @@ export default function UserProfile(props){
     const [storage] = React.useState(getStorage(firebase));
     const [email, setEmail] = React.useState("")
 
+    const [file, setFile] = React.useState("");
+
+    function handleChange(event) {
+        setFile(event.target.files[0]);
+    }
+
     return (
         <div className='Profile-header'>
             <h1 className="white">Welcome Back, {props.user.email}!</h1>
@@ -42,6 +48,11 @@ export default function UserProfile(props){
                     </div>
                 </div>
             </div>
+
+            <input type="file" onChange={handleChange}/>
+            <button>Upload to Firebase</button>
+            
+
             <Button>⬆</Button>
             <Button onClick={()=>{
                 signOut(props.auth)
