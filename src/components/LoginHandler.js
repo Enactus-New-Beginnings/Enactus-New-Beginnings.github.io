@@ -140,25 +140,25 @@ export default function Profile(){
                     <Input valid={checkForValidEmail(email)} invalid={!checkForValidEmail(email)} type="email" name="email" id="email" value={email} placeholder="email@example.com" bsSize="lg" onChange={(e) => {
                         setEmail(e.target.value)
                     }}/>
-                    <FormFeedback valid>This email is valid</FormFeedback>
-                    <FormFeedback invalid>This email is invalid</FormFeedback>
+                    <FormFeedback valid/>
+                    <FormFeedback invalid>Please enter a valid email</FormFeedback>
                 </FormGroup>
                 <FormGroup>
                     <Label for="password" size="lg">Password</Label>
                     <Input valid={checkForStrongPassword(password)} invalid={!checkForStrongPassword(password)} type="password" name="password" id="password" placeholder="enter password" bsSize="lg" onChange={(e) => {
                         setPassword(e.target.value)
                     }} />
-                    <FormFeedback valid>Valid Password</FormFeedback>
-                    <FormFeedback invalid>Invalid Password</FormFeedback>
+                    <FormFeedback valid/>
+                    <FormFeedback invalid>Password must be 8+ characters long and contain one uppercase letter, lowercase letter, and number</FormFeedback>
                     {
                         !loginState?
                         <div>
                             <Label for="Confirm Password" size="lg">Confirm Password</Label>
-                            <Input valid={checkForStrongPassword(password)&&(password==confirmPassword)} invalid={!checkForStrongPassword(password)||(password!=confirmPassword)} type="password" name="Confirm Password" id="confirm" placeholder="re-enter password" bsSize="lg" onChange={(e) => {
+                            <Input value={confirmPassword} valid={(password===confirmPassword)} invalid={(password!==confirmPassword)} type="password" name="Confirm Password" id="confirm" placeholder="re-enter password" bsSize="lg" onChange={(e) => {
                                 setConfirmedPassword(e.target.value)
                             }} />
-                            <FormFeedback valid>Password Confirmed</FormFeedback>
-                            <FormFeedback invalid>Incorrect Password Entered</FormFeedback>
+                            <FormFeedback valid/>
+                            <FormFeedback invalid>Passwords do not match!</FormFeedback>
                         </div>:<></>
                     }
                     <p style={{fontSize: 15}}>
@@ -167,9 +167,9 @@ export default function Profile(){
                         }}>Click here.</button>    
                     </p>
                 </FormGroup>
-                <Button size="lg" className="center" onClick={()=>{
+                <Button size="lg" color="primary" disabled={!(checkForValidEmail(email)&&checkForStrongPassword(password))||(loginState?false:password!==confirmPassword)} className="center" onClick={()=>{
                        handleAuthentication(auth,loginState,email,password,confirmPassword)  
-                }}>Submit</Button>
+                }}>{loginState?"Log In":"Sign Up"}</Button>
             </Form>
             </div>
         </div>

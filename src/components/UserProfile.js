@@ -15,7 +15,7 @@ export default function UserProfile(props){
     const [storage] = React.useState(getStorage(firebase));
     const [email, setEmail] = React.useState("")
 
-    const [file, setFile] = React.useState("");
+    const [file, setFile] = React.useState();
 
     function handleChange(event) {
         setFile(event.target.files[0]);
@@ -25,16 +25,17 @@ export default function UserProfile(props){
     if (!file) {
             alert("Please choose a file first!")
         }
-        const storageRef = ref(storage, `/files/${file.name}`)
+        const storageRef = ref(storage, `/${props.user.uid}/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
     
 
-    uploadTask.on(React, (snapshot) =>
+    uploadTask.on('state_changed', (snapshot) =>{},
         (err) => console.log(err),
         () => 
         {
             getDownloadURL(uploadTask.snapshot.ref).then((url) => {
                 console.log(url);
+                alert(url)
             });
         }); 
 
@@ -68,7 +69,7 @@ export default function UserProfile(props){
                 </div>
             </div>
 
-            <input type="file" onChange={handleChange}/>
+            <input type="file" accept=".pdf" onChange={handleChange}/>
             <button onClick={handleUpload}>Upload to Firebase</button>
             
 
