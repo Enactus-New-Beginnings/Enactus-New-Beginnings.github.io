@@ -2,7 +2,7 @@ import React from "react";
 import {firebase} from '../firebase'
 
 import { Input, Button } from 'reactstrap';
-import { signOut } from "firebase/auth";
+import { signOut, updateEmail } from "firebase/auth";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 import '../styles/Profile.css'
@@ -13,6 +13,7 @@ import '../styles/Profile.css'
  */
 export default function UserProfile(props){
     const [storage] = React.useState(getStorage(firebase));
+    const [email, setEmail] = React.useState("")
 
     return (
         <div className='Profile-header'>
@@ -21,8 +22,18 @@ export default function UserProfile(props){
                 <img alt="profile pic" src="https://www.w3schools.com/howto/img_avatar.png" className="avatar"/>
                 <div className="Top-profile-textCols">
                     <div className="Top-profile-textRows">
-                        <Input className="spacing" inline type="email" name="newEmail" id="newEmail" placeholder="New Email" />
-                        <Button color="success" className="spacing">Change Email</Button>
+                        <Input className="spacing" inline type="email" name="newEmail" id="newEmail" placeholder="New Email" value={email}  onChange={(e) => {
+                        setEmail(e.target.value)
+                    }} />
+                        <Button color="success" className="spacing" onClick={()=>{
+                            
+                            updateEmail(props.user, email).then(()=>{
+                                alert("succeeded") 
+                            }).catch((err)=>{
+                                alert(err.message)
+                            })
+
+                        }}>Change Email</Button>
                     </div>
                     <div className="Top-profile-textRows">
                         <Input className="spacing" inline type="password" name="currentPassword" id="currentPassword" placeholder="Current Password" />
