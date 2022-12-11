@@ -1,9 +1,11 @@
 import React from "react";
-import {firebase} from '../firebase'
+import { Input, Button, FormGroup, Label, FormText, Form } from 'reactstrap';
 
-import { Input, Button } from 'reactstrap';
+import {firebase} from '../firebase'
 import { signOut, updateEmail } from "firebase/auth";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+
+import ModalPopup from "../components/ModalPopup";
 
 import '../styles/Profile.css'
 
@@ -14,6 +16,10 @@ import '../styles/Profile.css'
 export default function UserProfile(props){
     const [storage] = React.useState(getStorage(firebase));
     const [email, setEmail] = React.useState("")
+
+    const [showModal, toggleModal] = React.useState(false)
+    const [modalText, setModalText] = React.useState("")
+    const [modalHeader, setModalHeader] = React.useState("")
 
     const [file, setFile] = React.useState();
 
@@ -27,15 +33,19 @@ export default function UserProfile(props){
         }
         const storageRef = ref(storage, `/${props.user.uid}/resumes/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
-    
-
-    uploadTask.on('state_changed', (snapshot) =>{},
-        (err) => console.log(err),
+    toggleModal(true)
+    setModalHeader("File Upload In Progress...")
+    uploadTask.on('state_changed', (snapshot) =>{
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setModalText('Upload is ' + progress + '% done');
+    },
+        (err) => setModalText(err),
         () => 
         {
             getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                console.log(url);
-                alert(url)
+                toggleModal(true)
+                setModalHeader("File Upload Complete")
+                setModalText("Your resume has been uploaded!")
             });
         }); 
 
@@ -43,6 +53,16 @@ export default function UserProfile(props){
 
     return (
         <div className='Profile-header'>
+            <ModalPopup showModal={showModal} toggleModal={()=>{toggleModal(!showModal)}}
+             header={modalHeader} 
+             body={<div>
+                <p>{modalText}</p>
+            </div>
+            }
+            footer={<div>
+                <Button color="primary" onClick={()=>{toggleModal(!showModal)}}>OK</Button>
+            </div>
+            }/>
             <h1 className="white">Welcome Back, {props.user.email}!</h1>
             <div className="Top-profile-container">
                 <img alt="profile pic" src="https://www.w3schools.com/howto/img_avatar.png" className="avatar"/>
@@ -68,12 +88,21 @@ export default function UserProfile(props){
                     </div>
                 </div>
             </div>
-
-            <input type="file" accept=".pdf" onChange={handleChange}/>
-            <button onClick={handleUpload}>Upload to Firebase</button>
-            
-
-            <Button>⬆</Button>
+            <div className="resume-feature-container">
+                <h1 className="resumes">My Resumes</h1>
+                <div className="upload-resume">
+                    <Form inline>
+                        <FormGroup>
+                            <Label for="resumeSelect">Upload a Resume</Label>
+                            <div className="upload-resume">
+                            <Input style={{width:'80%'}} type="file" id="resumeSelect" accept=".pdf" onChange={handleChange}/>
+                            <Button className="uploadButton" onClick={handleUpload}>⬆ Upload</Button>
+                            </div>
+                            <FormText color="black">Upload a resume in .pdf format to be connected to relevant employer oppurtunities around New Jersey. Once you select a file, press the "⬆ Upload" button.</FormText>
+                        </FormGroup>
+                    </Form>
+                </div>
+            </div>
             <Button onClick={()=>{
                 signOut(props.auth)
             }}>Logout</Button>
