@@ -46,10 +46,12 @@
     border-radius: 10px;
     background-image: linear-gradient(to right, rgba(70, 167, 252, 0.4), rgba(171, 247, 255, 0.4) , rgba(70, 167, 252, 0.4));
     display: flex;
-    flex-direction: row;
-    margin: 3%;
+    flex-direction: column;
+    margin: 2%;
     padding-left: 3%;
     padding-right: 3%;
+    padding-top: 1%;
+    padding-bottom: 1%;
   }
 
   .Top-profile-textCols{
@@ -61,7 +63,7 @@
   .Top-profile-textRows{
     display: flex;
     flex-direction: row;
-    margin: 3%;
+    margin: 1%;
   }
 
   h1{
@@ -69,7 +71,7 @@
     color: rgb(2, 32, 127);
   }
 
-  h1.white{
+  h2{
     text-align: center;
     color: rgb(77, 94, 111);
   }
@@ -123,7 +125,9 @@
     background-image: linear-gradient(to right, rgba(255, 0, 0, 0.4), rgba(255, 105, 91, 0.4) , rgba(255, 165, 0, 0.4));
     display: flex;
     flex-direction: column;
-    padding: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 2%;
     width: 80vw;
   }
 div.upload-resume{

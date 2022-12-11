@@ -98,9 +98,9 @@ export default function UserProfile(props){
                 }}>OK</Button>
             </div>
             }/>
-            <h1 className="white">Welcome Back, {props.user.email}!</h1>
             <div className="Top-profile-container">
                 <img alt="profile pic" src="https://www.w3schools.com/howto/img_avatar.png" className="avatar"/>
+                <h2>Welcome back, {props.user.email}!</h2>
                 <div className="Top-profile-textCols">
                     <div className="Top-profile-textRows">
                         <Input className="spacing" inline type="email" name="newEmail" id="newEmail" placeholder="New Email" value={email}  onChange={(e) => {
@@ -120,6 +120,9 @@ export default function UserProfile(props){
                         <Button className="spacing" color="primary">Change Password</Button>
                     </div>
                 </div>
+                <Button color="info" onClick={()=>{
+                    signOut(props.auth)
+                }}>Logout</Button>
             </div>
             <div className="resume-feature-container">
                 <h1 className="resumes">My Resumes</h1>
@@ -127,7 +130,7 @@ export default function UserProfile(props){
                     <Form inline>
                         <FormGroup>
                             <Label for="resumeSelect">Upload a Resume</Label>
-                            <div className="upload-resume">
+                            <div id="resume" className="upload-resume">
                             <Input style={{width:'80%'}} type="file" id="resumeSelect" accept=".pdf" onChange={handleChange}/>
                             <Button style={{marginLeft: '2%'}} color="primary" className="uploadButton" onClick={handleUpload}>⬆ Upload</Button>
                             </div>
@@ -152,9 +155,6 @@ export default function UserProfile(props){
                     </Table>
                 </div>
             </div>
-            <Button onClick={()=>{
-                signOut(props.auth)
-            }}>Logout</Button>
         </div>
     )
         }
