@@ -25,7 +25,7 @@ export default function UserProfile(props){
     if (!file) {
             alert("Please choose a file first!")
         }
-        const storageRef = ref(storage, `/${props.user.uid}/${file.name}`)
+        const storageRef = ref(storage, `/${props.user.uid}/resumes/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
     
 

@@ -137,7 +137,7 @@ export default function Profile(){
             <Form>
                 <FormGroup>
                     <Label for="email" size="lg">Email</Label>
-                    <Input valid={checkForValidEmail(email)} invalid={!checkForValidEmail(email)} type="email" name="email" id="email" value={email} placeholder="email@example.com" bsSize="lg" onChange={(e) => {
+                    <Input valid={checkForValidEmail(email)} invalid={email.length>0&&!checkForValidEmail(email)} type="email" name="email" id="email" value={email} placeholder="email@example.com" bsSize="lg" onChange={(e) => {
                         setEmail(e.target.value)
                     }}/>
                     <FormFeedback valid/>
@@ -145,7 +145,7 @@ export default function Profile(){
                 </FormGroup>
                 <FormGroup>
                     <Label for="password" size="lg">Password</Label>
-                    <Input valid={checkForStrongPassword(password)} invalid={!checkForStrongPassword(password)} type="password" name="password" id="password" placeholder="enter password" bsSize="lg" onChange={(e) => {
+                    <Input valid={checkForStrongPassword(password)} invalid={password.length>0&&!checkForStrongPassword(password)} type="password" name="password" id="password" placeholder="enter password" bsSize="lg" onChange={(e) => {
                         setPassword(e.target.value)
                     }} />
                     <FormFeedback valid/>
@@ -154,7 +154,7 @@ export default function Profile(){
                         !loginState?
                         <div>
                             <Label for="Confirm Password" size="lg">Confirm Password</Label>
-                            <Input value={confirmPassword} valid={(password===confirmPassword)} invalid={(password!==confirmPassword)} type="password" name="Confirm Password" id="confirm" placeholder="re-enter password" bsSize="lg" onChange={(e) => {
+                            <Input value={confirmPassword} valid={confirmPassword.length>0&&(password===confirmPassword)} invalid={confirmPassword.length>0&&(password!==confirmPassword)} type="password" name="Confirm Password" id="confirm" placeholder="re-enter password" bsSize="lg" onChange={(e) => {
                                 setConfirmedPassword(e.target.value)
                             }} />
                             <FormFeedback valid/>
