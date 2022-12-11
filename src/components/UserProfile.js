@@ -1,13 +1,14 @@
 import React from "react";
-import { Input, Button, FormGroup, Label, FormText, Form } from 'reactstrap';
+import { Input, Button, FormGroup, Label, FormText, Form, Table } from 'reactstrap';
 
 import {firebase} from '../firebase'
 import { signOut, updateEmail } from "firebase/auth";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, listAll } from "firebase/storage";
 
 import ModalPopup from "../components/ModalPopup";
 
 import '../styles/Profile.css'
+import '../styles/Resources.css'
 
 /**
  * Renders the user signup/login page if they are not authenticated, otherwise renders the user's profile
@@ -21,6 +22,9 @@ export default function UserProfile(props){
     const [modalText, setModalText] = React.useState("")
     const [modalHeader, setModalHeader] = React.useState("")
 
+    const [resumeList, setResumeList] = React.useState({})
+    const [refreshResumes, setRefresh] = React.useState(0)
+
     const [file, setFile] = React.useState();
 
     function handleChange(event) {
@@ -28,28 +32,57 @@ export default function UserProfile(props){
     }
 
     function handleUpload() {
-    if (!file) {
+        if (!file) {
             alert("Please choose a file first!")
         }
         const storageRef = ref(storage, `/${props.user.uid}/resumes/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
-    toggleModal(true)
-    setModalHeader("File Upload In Progress...")
-    uploadTask.on('state_changed', (snapshot) =>{
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setModalText('Upload is ' + progress + '% done');
-    },
+        toggleModal(true)
+        setModalHeader("File Upload In Progress...")
+        uploadTask.on('state_changed', (snapshot) =>{
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            setModalText('Upload is ' + progress + '% done');
+        },
         (err) => setModalText(err),
-        () => 
-        {
-            getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                toggleModal(true)
-                setModalHeader("File Upload Complete")
-                setModalText("Your resume has been uploaded!")
-            });
-        }); 
-
+        () => {
+            toggleModal(true)
+            setModalHeader("File Upload Complete")
+            setModalText("Your resume has been uploaded!")
+            setRefresh(refreshResumes+1)
+        });
     }
+
+    function mapDataToRows(data){
+            return Object.entries(data).map(vals=>{
+                let key=vals[0]
+                let value=vals[1]
+                return (<tr>
+                    <td>
+                        <a target="_blank" rel="noopener noreferrer" href={value}>{key}</a>
+                    </td>
+                </tr>)
+            })
+    }
+
+    React.useEffect(()=>{
+        const listRef=ref(storage,`/${props.user.uid}/resumes`)
+        const promises=[]
+        let newObj={}
+        listAll(listRef).then((res)=>{
+            res.items.forEach(itemRef=>{
+                promises.push(getDownloadURL(itemRef).then((url)=>{
+                    return {[itemRef.name]:url}
+                }))
+            })
+            Promise.all(promises).then((resumeElements)=>{
+                resumeElements.forEach(resumeElement=>{
+                    newObj={...newObj, ...resumeElement}
+                })
+                setResumeList(newObj)
+                console.log(newObj)
+            })
+        })
+    },[props.user.uid, storage, refreshResumes])
 
     return (
         <div className='Profile-header'>
@@ -60,7 +93,9 @@ export default function UserProfile(props){
             </div>
             }
             footer={<div>
-                <Button color="primary" onClick={()=>{toggleModal(!showModal)}}>OK</Button>
+                <Button color="primary" onClick={()=>{
+                    toggleModal(!showModal)
+                }}>OK</Button>
             </div>
             }/>
             <h1 className="white">Welcome Back, {props.user.email}!</h1>
@@ -72,13 +107,11 @@ export default function UserProfile(props){
                         setEmail(e.target.value)
                     }} />
                         <Button color="success" className="spacing" onClick={()=>{
-                            
                             updateEmail(props.user, email).then(()=>{
                                 alert("succeeded") 
                             }).catch((err)=>{
                                 alert(err.message)
                             })
-
                         }}>Change Email</Button>
                     </div>
                     <div className="Top-profile-textRows">
@@ -96,11 +129,27 @@ export default function UserProfile(props){
                             <Label for="resumeSelect">Upload a Resume</Label>
                             <div className="upload-resume">
                             <Input style={{width:'80%'}} type="file" id="resumeSelect" accept=".pdf" onChange={handleChange}/>
-                            <Button className="uploadButton" onClick={handleUpload}>⬆ Upload</Button>
+                            <Button style={{marginLeft: '2%'}} color="primary" className="uploadButton" onClick={handleUpload}>⬆ Upload</Button>
                             </div>
                             <FormText color="black">Upload a resume in .pdf format to be connected to relevant employer oppurtunities around New Jersey. Once you select a file, press the "⬆ Upload" button.</FormText>
                         </FormGroup>
                     </Form>
+                </div>
+                <div className="table">
+                    <Table striped bordered responsive>
+                        <thead>
+                        <tr>
+                            <th>
+                                Past Resumes
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                mapDataToRows(resumeList)
+                            }
+                        </tbody>
+                    </Table>
                 </div>
             </div>
             <Button onClick={()=>{

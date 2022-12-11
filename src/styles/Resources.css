@@ -34,7 +34,7 @@
 }
 
   .table{
-    height: calc(90vh - 89px);
+    max-height: calc(90vh - 89px);
     overflow-y: auto;
     background-color: rgb(255, 255, 255, 0.45);
   }

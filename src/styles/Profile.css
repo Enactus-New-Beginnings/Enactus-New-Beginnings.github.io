@@ -2,7 +2,7 @@
   background-image: url("../img/mountains.jpg");
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    min-height: 100vh;
     padding-top: 3%;
     display: flex;
     flex-direction: column;
@@ -24,7 +24,7 @@
     background-image: url("../img/mountains.jpg");
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    min-height: 100vh;
     padding: 2%;
     display: flex;
     flex-direction: column;
@@ -131,5 +131,4 @@ div.upload-resume{
   flex-direction: row;
   height: auto;
   align-items: flex-start;
-  justify-content: space-between;
 }
