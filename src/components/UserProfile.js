@@ -109,15 +109,22 @@ export default function UserProfile(props){
                         setEmail(e.target.value)
                     }} />
                         <Button color="success" className="spacing" onClick={()=>{
-                            updateEmail(props.user, email).then(()=>{
-                                toggleModal(true)
-                                setModalHeader("Success")
-                                setModalText("Your email has been changed!")
-                            }).catch((err)=>{
+                            if(email.length>0){
+                                updateEmail(props.user, email).then(()=>{
+                                    toggleModal(true)
+                                    setModalHeader("Success")
+                                    setModalText("Your email has been changed!")
+                                }).catch((err)=>{
+                                    toggleModal(true)
+                                    setModalHeader("Something Went Wrong")
+                                    setModalText(err.message)
+                                })
+                            } else{
                                 toggleModal(true)
                                 setModalHeader("Something Went Wrong")
-                                setModalText(err.message)
-                            })
+                                setModalText("Email address must be non-empty!")
+                            }
+                            
                         }}>Change Email</Button>
                     </div>
                     <div className="Top-profile-textRows">
