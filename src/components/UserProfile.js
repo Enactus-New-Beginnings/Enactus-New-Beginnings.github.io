@@ -33,7 +33,9 @@ export default function UserProfile(props){
 
     function handleUpload() {
         if (!file) {
-            alert("Please choose a file first!")
+            toggleModal(true)
+            setModalHeader("File Not Found")
+            setModalText("Please choose a file first!")
         }
         const storageRef = ref(storage, `/${props.user.uid}/resumes/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
@@ -103,20 +105,24 @@ export default function UserProfile(props){
                 <h2>Welcome back, {props.user.email}!</h2>
                 <div className="Top-profile-textCols">
                     <div className="Top-profile-textRows">
-                        <Input className="spacing" inline type="email" name="newEmail" id="newEmail" placeholder="New Email" value={email}  onChange={(e) => {
+                        <Input autoComplete="off" className="spacing" inline type="email" name="newEmail" id="newEmail" placeholder="New Email" value={email}  onChange={(e) => {
                         setEmail(e.target.value)
                     }} />
                         <Button color="success" className="spacing" onClick={()=>{
                             updateEmail(props.user, email).then(()=>{
-                                alert("succeeded") 
+                                toggleModal(true)
+                                setModalHeader("Success")
+                                setModalText("Your email has been changed!")
                             }).catch((err)=>{
-                                alert(err.message)
+                                toggleModal(true)
+                                setModalHeader("Something Went Wrong")
+                                setModalText(err.message)
                             })
                         }}>Change Email</Button>
                     </div>
                     <div className="Top-profile-textRows">
-                        <Input className="spacing" inline type="password" name="currentPassword" id="currentPassword" placeholder="Current Password" />
-                        <Input className="spacing" inline type="password" name="newPassword" id="newPassword" placeholder="New Password" />
+                        <Input autoComplete="off" className="spacing" inline type="password" name="currentPassword" id="currentPassword" placeholder="Current Password" />
+                        <Input autoComplete="off" className="spacing" inline type="password" name="newPassword" id="newPassword" placeholder="New Password" />
                         <Button className="spacing" color="primary">Change Password</Button>
                     </div>
                 </div>
