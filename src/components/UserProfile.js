@@ -31,7 +31,7 @@ export default function UserProfile(props){
                     </div>
                 </div>
             </div>
-            <Button>⬆</Button>
+            <Button color="primary" className="upload">Upload Your Resume ⬆</Button>
             <Button onClick={()=>{
                 signOut(props.auth)
             }}>Logout</Button>

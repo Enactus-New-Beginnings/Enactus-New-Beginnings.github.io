@@ -91,5 +91,10 @@
   .spacing{
     margin:2%;
   }
-  
+  .upload{
+    margin-bottom: 10px;
+  }
+  .resumeText{
+    color: white;
+  }
 
