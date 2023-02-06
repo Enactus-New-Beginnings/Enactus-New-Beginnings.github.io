@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Form, FormGroup, Label, Input, FormFeedback,  } from 'reactstrap';
 
 import {firebase} from '../firebase'
+import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 
 import ModalPopup from "../components/ModalPopup";
@@ -13,6 +14,8 @@ import '../styles/Profile.css'
  * @module LoginHandler
  */
 export default function Profile(){
+    const analytics=getAnalytics(firebase)
+
     const [email, setEmail] = React.useState("")
     const [password, setPassword] = React.useState("")
     const [loginState, toggleLoginState] = React.useState(true)
@@ -53,7 +56,7 @@ export default function Profile(){
         if(loginState) {
             signInWithEmailAndPassword(auth, email, password)
             .then(() => {
-            })
+            }) 
             .catch((error) => {
                 const errorMessage = error.message;
                 generateModal("Sign In Failed", errorMessage)

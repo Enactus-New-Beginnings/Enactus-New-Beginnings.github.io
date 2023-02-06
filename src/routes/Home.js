@@ -5,7 +5,11 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { Button, Container, Row, Col } from 'reactstrap';
 import { Link } from "react-router-dom";
 
+import { getAnalytics } from "firebase/analytics";
+import {firebase} from '../firebase'
+
 function App() {
+  const analytics=getAnalytics(firebase)
   return (
     <div className="App">
       <header className="App-header">
