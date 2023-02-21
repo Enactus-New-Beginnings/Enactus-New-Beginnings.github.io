@@ -3,18 +3,23 @@ import { Input, Button, FormGroup, Label, FormText, Form, Table } from 'reactstr
 
 import {firebase} from '../firebase'
 import { signOut, updateEmail } from "firebase/auth";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL, listAll } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, listAll, } from "firebase/storage";
+
+import {getDatabase, ref as ref1, set} from "firebase/database"
 
 import ModalPopup from "../components/ModalPopup";
 
 import '../styles/Profile.css'
 import '../styles/Resources.css'
 
+
+
 /**
  * Renders the user signup/login page if they are not authenticated, otherwise renders the user's profile
  * @module Profile
  */
 export default function UserProfile(props){
+    const db = getDatabase(firebase);
     const [storage] = React.useState(getStorage(firebase));
     const [email, setEmail] = React.useState("")
 
@@ -36,6 +41,7 @@ export default function UserProfile(props){
             toggleModal(true)
             setModalHeader("File Not Found")
             setModalText("Please choose a file first!")
+
         }
         const storageRef = ref(storage, `/${props.user.uid}/resumes/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
@@ -49,9 +55,14 @@ export default function UserProfile(props){
         () => {
             toggleModal(true)
             setModalHeader("File Upload Complete")
+            setCurrentResume(file.name)
             setModalText("Your resume has been uploaded!")
             setRefresh(refreshResumes+1)
         });
+    }
+
+    function setCurrentResume(name){
+        set(ref1(db, 'users/'+props.user.uid+'/resumes/current'), name).then(()=>{console.log("success")}).catch((error)=>{console.log(error)});
     }
 
     function mapDataToRows(data){
