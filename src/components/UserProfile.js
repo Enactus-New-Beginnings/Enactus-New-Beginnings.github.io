@@ -3,9 +3,9 @@ import { Input, Button, FormGroup, Label, FormText, Form, Table } from 'reactstr
 
 import {firebase} from '../firebase'
 import { signOut, updateEmail } from "firebase/auth";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL, listAll, } from "firebase/storage";
+import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, listAll } from "firebase/storage";
 
-import {getDatabase, ref as ref1, set} from "firebase/database"
+import {getDatabase, ref as dbRef, set} from "firebase/database"
 
 import ModalPopup from "../components/ModalPopup";
 
@@ -43,7 +43,7 @@ export default function UserProfile(props){
             setModalText("Please choose a file first!")
 
         }
-        const storageRef = ref(storage, `/${props.user.uid}/resumes/${file.name}`)
+        const storageRef = storageRef(storage, `/${props.user.uid}/resumes/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
         toggleModal(true)
         setModalHeader("File Upload In Progress...")
@@ -62,7 +62,7 @@ export default function UserProfile(props){
     }
 
     function setCurrentResume(name){
-        set(ref1(db, 'users/'+props.user.uid+'/resumes/current'), name).then(()=>{console.log("success")}).catch((error)=>{console.log(error)});
+        set(dbRef(db, 'users/'+props.user.uid+'/resumes/current'), name).then(()=>{console.log("success")}).catch((error)=>{console.log(error)});
     }
 
     function mapDataToRows(data){
@@ -78,7 +78,7 @@ export default function UserProfile(props){
     }
 
     React.useEffect(()=>{
-        const listRef=ref(storage,`/${props.user.uid}/resumes`)
+        const listRef=storageRef(storage,`/${props.user.uid}/resumes`)
         const promises=[]
         let newObj={}
         listAll(listRef).then((res)=>{

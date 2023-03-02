@@ -9,7 +9,7 @@ import '../styles/Resources.css'
  */
 export default function ResourceTables(){
     const data = useLoaderData();
-    const resourceName = capitalizeFirstLetter(useLocation().pathname.split("/").pop())
+    const resourceName = renameTables(useLocation().pathname.split("/").pop())
     React.useEffect(()=>{
         console.log(data)
     }, [data])
@@ -39,11 +39,46 @@ export default function ResourceTables(){
 
 /**
  * Capitalize the first letter of a string
- * @param {string} s String to capitalize
- * @returns The string with its first letter capitlalized
+ * @param {String} s String to capitalize
+ * @returns The string with its first letter capitalized
  */
 function capitalizeFirstLetter(s){
     return s[0].toUpperCase()+s.substring(1)
+}
+
+function renameTables(s){
+    switch(s){
+        case "food":
+            return "Food Banks, Soup Kitchens, and Distribution Centers"
+        case "clothing":
+            return "Clothing Rooms/Drives and Thrift Shops"
+        case "housing":
+            return "Family Shelters, Emergency Shelters, Affordable Housing Assistance"
+        default:
+            return s
+    }
+}
+
+/**
+ * Orders the columns of the tables correctly (name first, type second, address third, etc)
+ * @param {String} a 
+ * @param {String} b 
+ * @returns integer used for compare function (negative if a<b, zero if a=b, positive if a>b)
+ */
+function orderResourceElements(a, b){
+    let valuesLookup={
+        name: 1,
+        type: 2,
+        address: 3,
+        county: 4,
+        phone: 5,
+        site: 6, website: 6,
+        notes: 1000,
+        other: 1001
+    }
+    let aVal = valuesLookup[a]?valuesLookup[a]:a.charCodeAt(0)
+    let bVal = valuesLookup[b]?valuesLookup[b]:b.charCodeAt(0)
+    return aVal-bVal
 }
 
 /**
@@ -52,8 +87,9 @@ function capitalizeFirstLetter(s){
  * @return Table heading tags (th)
  */
 function mapHeaderToColumns(headers){
-    return Object.keys(headers).map(header=>{
-        return (<th>{capitalizeFirstLetter(header)}</th>)
+    let headersArray = Object.keys(headers).sort(orderResourceElements)
+    return headersArray.map(header=>{
+        return (<th key={header}>{capitalizeFirstLetter(header)}</th>)
     })
 }
 
@@ -64,20 +100,19 @@ function mapHeaderToColumns(headers){
  */
 function mapDataToRows(data){
     return data.map(resource=>{
-        return (<tr>
+        return (<tr key={Math.random()*1000}>
             {
-                Object.entries(resource).map(vals=>{
-                    let key=vals[0]
-                    let value=vals[1]
+                Object.keys(resource).sort(orderResourceElements).map((key)=>{
+                    let value=resource[key]
                     if(key.toLowerCase().includes('site')){
                         if(value!=="N/A")
-                            return (<td><a target="_blank" rel="noopener noreferrer" href={value} >Link</a></td>)
+                            return (<td key={resource[key]}><a target="_blank" rel="noopener noreferrer" href={value} >Link</a></td>)
                     }
                      if(key.toLowerCase().includes('address')){
                          if(value!=="N/A")
-                             return (<td><a target="_blank" rel="noopener noreferrer" href={"https://www.google.com/maps/dir//" + value}> {value} </a></td>)
+                             return (<td key={resource[key]}><a target="_blank" rel="noopener noreferrer" href={"https://www.google.com/maps/dir//" + value}> {value} </a></td>)
                     }
-                    return (<td>{value}</td>)
+                    return (<td key={resource[key]}>{value}</td>)
                     }
                 )
             }
