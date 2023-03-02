@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Button, FormGroup, Label, FormText, Form, Table } from 'reactstrap';
+import { Input, Button, FormGroup, Label, FormText, Form, Table, ButtonGroup } from 'reactstrap';
 
 import {firebase} from '../firebase'
 import { signOut, updateEmail } from "firebase/auth";
@@ -29,6 +29,8 @@ export default function UserProfile(props){
 
     const [resumeList, setResumeList] = React.useState({})
     const [refreshResumes, setRefresh] = React.useState(0)
+
+    const [profileOption, setProfileOption] = React.useState("settings")
 
     const [file, setFile] = React.useState();
 
@@ -98,6 +100,7 @@ export default function UserProfile(props){
     },[props.user.uid, storage, refreshResumes])
 
     return (
+        <div>
         <div className='Profile-header'>
             <ModalPopup showModal={showModal} toggleModal={()=>{toggleModal(!showModal)}}
              header={modalHeader} 
@@ -111,15 +114,25 @@ export default function UserProfile(props){
                 }}>OK</Button>
             </div>
             }/>
-            <div className="Top-profile-container">
-                <img alt="profile pic" src="https://www.w3schools.com/howto/img_avatar.png" className="avatar"/>
-                <h2>Welcome back, {props.user.email}!</h2>
-                <div className="Top-profile-textCols">
+            <h2>Welcome back, {props.user.email}!</h2>
+            <button className="link" onClick={()=>{signOut(props.auth)}}>(Click here to log out)</button>
+            </div>
+            <div>
+                <ButtonGroup style={{marginLeft: '1.5%', marginTop: '1%', marginBottom: '1%'}}>
+                    <Button active={profileOption==='settings'} onClick={()=>{setProfileOption('settings')}}>Settings</Button>
+                    <Button active={profileOption==='resumes'} onClick={()=>{setProfileOption('resumes')}}>My Resumes</Button>
+                </ButtonGroup>
+                {
+                    profileOption==='settings'?<div style={{marginLeft: '1.5%', marginRight: '1.5%'}}>
+                    <h3>Account Settings</h3>
+                    <hr/>
+                    <h5>Change your Email</h5>
+                    <p>You will be sent a confirmation to your new Email.</p>
                     <div className="Top-profile-textRows">
-                        <Input autoComplete="off" className="spacing" inline type="email" name="newEmail" id="newEmail" placeholder="New Email" value={email}  onChange={(e) => {
+                        <Input autoComplete="off" style={{marginRight: '1.5%', marginBottom: '1%'}} inline type="email" name="newEmail" id="newEmail" placeholder="New Email" value={email}  onChange={(e) => {
                         setEmail(e.target.value)
                     }} />
-                        <Button color="success" className="spacing" onClick={()=>{
+                        <Button size="lg" style={{marginBottom: '1%'}} color="success" onClick={()=>{
                             if(email.length>0){
                                 updateEmail(props.user, email).then(()=>{
                                     toggleModal(true)
@@ -136,24 +149,20 @@ export default function UserProfile(props){
                                 setModalText("Email address must be non-empty!")
                             }
                             
-                        }}>Change Email</Button>
+                        }}>Confirm</Button>
                     </div>
+                    <h5>Change your Password</h5>
+                    <p>Please enter your current password in the appropriate box, then set a new password. New password must contain at least one of each: uppercase letter, lowercase letter, number.</p>
                     <div className="Top-profile-textRows">
-                        <Input autoComplete="off" className="spacing" inline type="password" name="currentPassword" id="currentPassword" placeholder="Current Password" />
-                        <Input autoComplete="off" className="spacing" inline type="password" name="newPassword" id="newPassword" placeholder="New Password" />
-                        <Button className="spacing" color="primary">Change Password</Button>
+                        <Input autoComplete="off" inline type="password" name="currentPassword" id="currentPassword" placeholder="Current Password" />
+                        <Input autoComplete="off" style={{marginLeft: '1.5%'}} inline type="password" name="newPassword" id="newPassword" placeholder="New Password" />
+                        <Button size="lg" style={{marginLeft: '1.5%'}} color="primary">Confirm</Button>
                     </div>
-                </div>
-                <Button color="info" onClick={()=>{
-                    signOut(props.auth)
-                }}>Logout</Button>
-            </div>
-            <div className="resume-feature-container">
-                <h1 className="resumes">My Resumes</h1>
-                <div className="upload-resume">
+                </div>: <div><div style={{marginLeft: '1.5%'}}>
+                <h3>Upload a Resume</h3>
+                  <hr/>
                     <Form inline>
                         <FormGroup>
-                            <Label for="resumeSelect">Upload a Resume</Label>
                             <div id="resume" className="upload-resume">
                             <Input style={{width:'80%'}} type="file" id="resumeSelect" accept=".pdf" onChange={handleChange}/>
                             <Button style={{marginLeft: '2%'}} color="primary" className="uploadButton" onClick={handleUpload}>⬆ Upload</Button>
@@ -162,7 +171,9 @@ export default function UserProfile(props){
                         </FormGroup>
                     </Form>
                 </div>
-                <div className="table">
+                <div className="resume-table">
+                <h3>My Resumes</h3>
+                <hr/>
                     <Table striped bordered responsive>
                         <thead>
                         <tr>
@@ -177,8 +188,10 @@ export default function UserProfile(props){
                             }
                         </tbody>
                     </Table>
+                    </div>
                 </div>
-            </div>
+                }
+           </div>
         </div>
     )
         }
