@@ -25,8 +25,8 @@ export default function MenuBar(){
     const location = useLocation();
     return(
       <>
-       <div className={location.pathname.includes("resources")?"sticky":"fixed"}>
-        <Navbar color={location.pathname.includes("resources")?"light":""} light expand="md">
+       <div className={(location.pathname.includes("resources")||location.pathname.includes("employment"))?"sticky":"fixed"}>
+        <Navbar color={(location.pathname.includes("resources")||location.pathname.includes("employment"))?"light":""} light expand="md">
           <Link to="/">
             <NavbarBrand>
               <img src={logo} className="top-logo" alt="logo" />

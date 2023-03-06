@@ -38,3 +38,11 @@
     overflow-y: auto;
     background-color: rgb(255, 255, 255, 0.45);
   }
+
+  .employment-header{
+    text-align: center;
+    background-image: url("../img/resource-bg.jpg");
+    background-size: cover;
+    min-height: 100vh;
+    background-position: center;
+}

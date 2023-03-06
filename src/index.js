@@ -16,6 +16,7 @@ import ErrorPage from './routes/ErrorPage'
 import ResourceTables from './routes/ResourceTables';
 import VideoGallery from './routes/VideoGallery';
 import Profile from './routes/Profile';
+import Employment from './routes/Employment';
 
 const videos=require('./components/VideoData')
 
@@ -55,6 +56,9 @@ const router = createBrowserRouter([
             },
           }
         ]
+      },{
+        path: "employment",
+        element: <Employment />
       }
     ],
   },

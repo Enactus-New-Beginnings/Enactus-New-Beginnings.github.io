@@ -2,7 +2,7 @@ import React from "react";
 import { Input, Button, FormGroup, Label, FormText, Form, Table, ButtonGroup } from 'reactstrap';
 
 import {firebase} from '../firebase'
-import { signOut, updateEmail } from "firebase/auth";
+import { signOut, updateEmail, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
 import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, listAll } from "firebase/storage";
 
 import {getDatabase, ref as dbRef, set} from "firebase/database"
@@ -21,7 +21,10 @@ import '../styles/Resources.css'
 export default function UserProfile(props){
     const db = getDatabase(firebase);
     const [storage] = React.useState(getStorage(firebase));
+
     const [email, setEmail] = React.useState("")
+    const [oldPassword, setOldPassword] = React.useState("")
+    const [newPassword, setNewPassword] = React.useState("")
 
     const [showModal, toggleModal] = React.useState(false)
     const [modalText, setModalText] = React.useState("")
@@ -154,8 +157,12 @@ export default function UserProfile(props){
                     <h5>Change your Password</h5>
                     <p>Please enter your current password in the appropriate box, then set a new password. New password must contain at least one of each: uppercase letter, lowercase letter, number.</p>
                     <div className="Top-profile-textRows">
-                        <Input autoComplete="off" inline type="password" name="currentPassword" id="currentPassword" placeholder="Current Password" />
-                        <Input autoComplete="off" style={{marginLeft: '1.5%'}} inline type="password" name="newPassword" id="newPassword" placeholder="New Password" />
+                        <Input autoComplete="off" inline type="password" name="currentPassword" id="currentPassword" placeholder="Current Password" value={oldPassword}  onChange={(e) => {
+                        setOldPassword(e.target.value)
+                    }}/>
+                        <Input autoComplete="off" style={{marginLeft: '1.5%'}} inline type="password" name="newPassword" id="newPassword" placeholder="New Password" value={newPassword}  onChange={(e) => {
+                        setNewPassword(e.target.value)
+                    }}/>
                         <Button size="lg" style={{marginLeft: '1.5%'}} color="primary">Confirm</Button>
                     </div>
                 </div>: <div><div style={{marginLeft: '1.5%'}}>
