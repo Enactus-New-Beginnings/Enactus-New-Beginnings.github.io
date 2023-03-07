@@ -58,7 +58,10 @@ const router = createBrowserRouter([
         ]
       },{
         path: "employment",
-        element: <Employment />
+        element: <Employment />,
+        loader: async ()=> {
+          return fetch (`https://us-central1-newbeginnings-7fed9.cloudfunctions.net/widgets/resources/employment`);
+        },
       }
     ],
   },
