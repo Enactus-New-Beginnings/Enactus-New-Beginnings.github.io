@@ -163,7 +163,20 @@ export default function UserProfile(props){
                         <Input autoComplete="off" style={{marginLeft: '1.5%'}} inline type="password" name="newPassword" id="newPassword" placeholder="New Password" value={newPassword}  onChange={(e) => {
                         setNewPassword(e.target.value)
                     }}/>
-                        <Button size="lg" style={{marginLeft: '1.5%'}} color="primary">Confirm</Button>
+                        <Button size="lg" style={{marginLeft: '1.5%'}} color="primary" onClick={()=>{
+                            const credential = EmailAuthProvider.credential(props.auth.currentUser.email,oldPassword)
+                            reauthenticateWithCredential(props.user, credential).then(() => 
+                            { updatePassword(props.user, newPassword).then(()=> {
+                                toggleModal(true)
+                                setModalHeader("Password Changed")
+                                setModalText("Your Password has been Successfully Changed")})
+                            
+                            }).catch((error) => {
+                                toggleModal(true)
+                                setModalHeader("Something Went Wrong")
+                                setModalText(error.message)
+                            });
+                            }}>Confirm</Button>
                     </div>
                 </div>: <div><div style={{marginLeft: '1.5%'}}>
                 <h3>Upload a Resume</h3>
