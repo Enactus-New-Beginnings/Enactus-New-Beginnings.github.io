@@ -1,5 +1,5 @@
 import React from "react";
-
+import ReactGA from "react-ga4";
 import {firebase} from '../firebase'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -16,7 +16,9 @@ import '../styles/Profile.css'
 export default function Profile(){
     const [auth] = React.useState(getAuth(firebase));
     const [user, setUser] = React.useState(null)
-
+    React.useEffect(()=>{
+      ReactGA.send({ hitType: "pageview", page: "profile" });
+      }, [])
     React.useEffect(()=>{
         onAuthStateChanged(auth, (newUser) => {
             if (newUser) {

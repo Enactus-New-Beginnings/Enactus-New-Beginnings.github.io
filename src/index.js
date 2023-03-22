@@ -17,6 +17,8 @@ import ResourceTables from './routes/ResourceTables';
 import VideoGallery from './routes/VideoGallery';
 import Profile from './routes/Profile';
 import Employment from './routes/Employment';
+import ReactGA from "react-ga4";
+ReactGA.initialize("G-FVYZBPF2XJ");
 
 const videos=require('./components/VideoData')
 
