@@ -3,7 +3,7 @@ import { Input, Button, FormGroup, Label, FormText, Form, Table, ButtonGroup } f
 
 import {firebase} from '../firebase'
 import { signOut, updateEmail, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
-import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, listAll } from "firebase/storage";
+import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, listAll, deleteObject } from "firebase/storage";
 
 import {getDatabase, ref as dbRef, set} from "firebase/database"
 
@@ -48,8 +48,8 @@ export default function UserProfile(props){
             setModalText("Please choose a file first!")
 
         }
-        const storageRef = storageRef(storage, `/${props.user.uid}/resumes/${file.name}`)
-        const uploadTask = uploadBytesResumable(storageRef, file);
+        const mystorageRef = storageRef(storage, `/${props.user.uid}/resumes/${file.name}`)
+        const uploadTask = uploadBytesResumable(mystorageRef, file);
         toggleModal(true)
         setModalHeader("File Upload In Progress...")
         uploadTask.on('state_changed', (snapshot) =>{
@@ -76,10 +76,27 @@ export default function UserProfile(props){
                 let value=vals[1]
                 return (<tr>
                     <td>
-                        <a target="_blank" rel="noopener noreferrer" href={value}>{key}</a>
+                        <a target="_blank" rel="noopener noreferrer" href={value}>{key}</a> 
+                        <button onClick={removeResume(key,value)}>delete</button>
                     </td>
                 </tr>)
             })
+    }
+
+    function removeResume(resumeName,resumeLink){
+        //where is the resume being stored, resumeList?
+        // in mapDataToRows function, 'value' stores the link to the document in firebase. key stores the name of the file
+        const desertRef = storageRef(storage, resumeLink);
+
+        // Delete the file
+        deleteObject(desertRef).then(() => {
+        // File deleted successfully
+        }).catch((error) => {
+        // Uh-oh, an error occurred!
+        });
+
+        //const query = 2; 
+        //NEED TO CHECK WHY RESUME IS NOT UPDATING IN FIREBASE WEBSITE
     }
 
     React.useEffect(()=>{
