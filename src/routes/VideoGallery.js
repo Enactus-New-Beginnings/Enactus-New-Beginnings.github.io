@@ -1,5 +1,5 @@
 import React from 'react';
-
+import ReactGA from "react-ga4";
 import GalleryComponent from '../components/GalleryComponent';
 import { Container, Row, Col } from 'reactstrap';
 
@@ -10,6 +10,9 @@ import { useLoaderData } from 'react-router-dom'
  */
 export default function VideoGallery(){
     const videos = useLoaderData();
+    React.useEffect(()=>{
+        ReactGA.send({ hitType: "pageview", page: "videogallery" });
+        }, [])  
     return(
         <Container>
             <Row>

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactGA from "react-ga4";
 import { Table } from 'reactstrap';
 import { useLoaderData, useLocation } from 'react-router-dom'
 import '../styles/Resources.css'
@@ -13,6 +14,9 @@ export default function ResourceTables(){
     React.useEffect(()=>{
         console.log(data)
     }, [data])
+    React.useEffect(()=>{
+        ReactGA.send({ hitType: "pageview", page: "resourcetables" });
+        }, [])
     return (
         <div>
             <h3>{resourceName}</h3>

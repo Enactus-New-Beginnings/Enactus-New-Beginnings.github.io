@@ -1,4 +1,5 @@
 import React from "react";
+import ReactGA from "react-ga4";
 import { Button, Form, FormGroup, Label, Input, FormFeedback,  } from 'reactstrap';
 
 import {firebase} from '../firebase'
@@ -14,7 +15,7 @@ import '../styles/Profile.css'
  * @module LoginHandler
  */
 export default function Profile(){
-    const analytics=getAnalytics(firebase)
+    // const analytics=getAnalytics(firebase)
 
     const [email, setEmail] = React.useState("")
     const [password, setPassword] = React.useState("")
@@ -35,7 +36,7 @@ export default function Profile(){
      * @returns boolean value of whether or not password is secure
      */
     function checkForStrongPassword(password){
-        return password.length >= 8 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password)
+        return password.length >= 8 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password)  
     }
 
     /**
@@ -69,6 +70,7 @@ export default function Profile(){
                 if(checkForStrongPassword(password)) {
                     createUserWithEmailAndPassword(auth, email, password)
                     .then(() => {
+                        ReactGA.send({ hitType: "accountcreated", page: "newaccount" });
                     })
                     .catch((error) => {
                         const errorMessage = error.message;
