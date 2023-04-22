@@ -77,26 +77,36 @@ export default function UserProfile(props){
                 return (<tr>
                     <td>
                         <a target="_blank" rel="noopener noreferrer" href={value}>{key}</a> 
-                        <button onClick={removeResume(key,value)}>delete</button>
+                        <Button style={{marginLeft: '2%'}} color="primary" className="deleteButton" onClick={()=>removeResume(key,value)}>Remove</Button>
                     </td>
                 </tr>)
             })
     }
 
     function removeResume(resumeName,resumeLink){
-        //where is the resume being stored, resumeList?
         // in mapDataToRows function, 'value' stores the link to the document in firebase. key stores the name of the file
         const desertRef = storageRef(storage, resumeLink);
 
         // Delete the file
         deleteObject(desertRef).then(() => {
-        // File deleted successfully
+            // File deleted successfully
+            toggleModal(true)
+            setModalHeader("File Deleted")
+            setModalText("Your resume has been removed!")
+            setRefresh(refreshResumes+1)
         }).catch((error) => {
-        // Uh-oh, an error occurred!
+            // Uh-oh, an error occurred!
         });
 
-        //const query = 2; 
-        //NEED TO CHECK WHY RESUME IS NOT UPDATING IN FIREBASE WEBSITE
+        set(dbRef(db, 'users/'+props.user.uid+'/resumes/current'), null)
+          .then(() => {
+            // Data deleted successfully!
+            console.log("successful delete")
+          })
+          .catch((error) => {
+            // The delete failed...
+            console.log(error)
+          });
     }
 
     React.useEffect(()=>{
