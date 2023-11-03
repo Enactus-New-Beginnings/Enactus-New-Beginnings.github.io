@@ -3,9 +3,9 @@ import { Input, Button, FormGroup, Label, FormText, Form, Table, ButtonGroup } f
 
 import {firebase} from '../firebase'
 import { signOut, updateEmail, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
-import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, listAll, deleteObject } from "firebase/storage";
+import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, listAll } from "firebase/storage";
 
-import {getDatabase, ref as dbRef, set} from "firebase/database"
+import {getDatabase, ref as dbRef, set, child, get} from "firebase/database"
 
 import ModalPopup from "../components/ModalPopup";
 
@@ -37,6 +37,8 @@ export default function UserProfile(props){
 
     const [file, setFile] = React.useState();
 
+    const [currRes, setCurrent] = React.useState("")
+
     function handleChange(event) {
         setFile(event.target.files[0]);
     }
@@ -48,8 +50,8 @@ export default function UserProfile(props){
             setModalText("Please choose a file first!")
 
         }
-        const mystorageRef = storageRef(storage, `/${props.user.uid}/resumes/${file.name}`)
-        const uploadTask = uploadBytesResumable(mystorageRef, file);
+        const storageRefr = storageRef(storage, `/${props.user.uid}/resumes/${file.name}`)
+        const uploadTask = uploadBytesResumable(storageRefr, file);
         toggleModal(true)
         setModalHeader("File Upload In Progress...")
         uploadTask.on('state_changed', (snapshot) =>{
@@ -76,31 +78,15 @@ export default function UserProfile(props){
                 let value=vals[1]
                 return (<tr>
                     <td>
-                        <a target="_blank" rel="noopener noreferrer" href={value}>{key}</a> 
-                        <button onClick={removeResume(key,value)}>delete</button>
+                        <a target="_blank" rel="noopener noreferrer" href={value}>{key}</a>
                     </td>
                 </tr>)
             })
     }
 
-    function removeResume(resumeName,resumeLink){
-        //where is the resume being stored, resumeList?
-        // in mapDataToRows function, 'value' stores the link to the document in firebase. key stores the name of the file
-        const desertRef = storageRef(storage, resumeLink);
-
-        // Delete the file
-        deleteObject(desertRef).then(() => {
-        // File deleted successfully
-        }).catch((error) => {
-        // Uh-oh, an error occurred!
-        });
-
-        //const query = 2; 
-        //NEED TO CHECK WHY RESUME IS NOT UPDATING IN FIREBASE WEBSITE
-    }
-
     React.useEffect(()=>{
-        const listRef=storageRef(storage,`/${props.user.uid}/resumes`)
+        const listRef = storageRef(storage,`/${props.user.uid}/resumes`)
+        const dbr = dbRef(db)
         const promises=[]
         let newObj={}
         listAll(listRef).then((res)=>{
@@ -117,6 +103,15 @@ export default function UserProfile(props){
                 console.log(newObj)
             })
         })
+
+        get(child(dbr,'users/'+props.user.uid+'/resumes/current')).then((snapshot) =>{
+            if(snapshot.exists()){
+                setCurrent(snapshot.val())
+            } else {
+                console.log("No data available")
+            }  
+        })
+
     },[props.user.uid, storage, refreshResumes])
 
     return (
@@ -209,7 +204,9 @@ export default function UserProfile(props){
                     </Form>
                 </div>
                 <div className="resume-table">
+
                 <h3>My Resumes</h3>
+                <p>Current Resume: {currRes} </p>
                 <hr/>
                     <Table striped bordered responsive>
                         <thead>

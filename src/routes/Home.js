@@ -37,7 +37,9 @@ function App() {
                       <Button color="primary" size="lg" style={{margin:'2%'}}>Upload Your Resume</Button>
                     </Link>
                     <br/>
-                    <Button color="primary" size="lg" disabled style={{margin:'2%'}}>View Employers</Button>
+                    <Link to= "/employment">
+                      <Button color="primary" size="lg" style={{margin:'2%'}}>View Employers</Button>
+                    </Link>
                 </Col>
                 <Col sm="4">
                   <h3>
