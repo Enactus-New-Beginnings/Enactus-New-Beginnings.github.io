@@ -3,7 +3,7 @@ import { Input, Button, FormGroup, Label, FormText, Form, Table, ButtonGroup } f
 
 import {firebase} from '../firebase'
 import { signOut, updateEmail, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
-import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, listAll } from "firebase/storage";
+import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, listAll, deleteObject} from "firebase/storage";
 
 import {getDatabase, ref as dbRef, set, child, get} from "firebase/database"
 
@@ -78,10 +78,37 @@ export default function UserProfile(props){
                 let value=vals[1]
                 return (<tr>
                     <td>
-                        <a target="_blank" rel="noopener noreferrer" href={value}>{key}</a>
+                        <a target="_blank" rel="noopener noreferrer" href={value}>{key}</a> 
+                        <Button style={{marginLeft: '2%'}} color="primary" className="deleteButton" onClick={()=>removeResume(key,value)}>Remove</Button>
                     </td>
                 </tr>)
             })
+    }
+
+    function removeResume(resumeName,resumeLink){
+        // in mapDataToRows function, 'value' stores the link to the document in firebase. key stores the name of the file
+        const desertRef = storageRef(storage, resumeLink);
+
+        // Delete the file
+        deleteObject(desertRef).then(() => {
+            // File deleted successfully
+            toggleModal(true)
+            setModalHeader("File Deleted")
+            setModalText("Your resume has been removed!")
+            setRefresh(refreshResumes+1)
+        }).catch((error) => {
+            // Uh-oh, an error occurred!
+        });
+
+        set(dbRef(db, 'users/'+props.user.uid+'/resumes/current'), null)
+          .then(() => {
+            // Data deleted successfully!
+            console.log("successful delete")
+          })
+          .catch((error) => {
+            // The delete failed...
+            console.log(error)
+          });
     }
 
     React.useEffect(()=>{
@@ -228,4 +255,4 @@ export default function UserProfile(props){
            </div>
         </div>
     )
-        }
+}
