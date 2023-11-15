@@ -1,5 +1,6 @@
 import React from "react";
-import { Input, Button, FormGroup, Label, FormText, Form, Table, ButtonGroup } from 'reactstrap';
+
+import { Input, Button, FormGroup, FormText, Form, Table, ButtonGroup } from 'reactstrap';
 
 import {firebase} from '../firebase'
 import { signOut, updateEmail, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
@@ -138,8 +139,8 @@ export default function UserProfile(props){
                 console.log("No data available")
             }  
         })
-
-    },[props.user.uid, storage, refreshResumes])
+        // eslint-disable-next-line
+    },[props.user.uid, storage, refreshResumes]) 
 
     return (
         <div>
