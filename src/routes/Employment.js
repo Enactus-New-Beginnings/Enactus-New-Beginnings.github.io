@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table } from 'reactstrap';
-import { useLoaderData, useLocation } from 'react-router-dom'
+import { useLoaderData } from 'react-router-dom'
 import '../styles/Resources.css'
 import { useEffect } from 'react';
 

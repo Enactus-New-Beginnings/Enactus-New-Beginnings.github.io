@@ -3,7 +3,7 @@ import ReactGA from "react-ga4";
 import { Button, Form, FormGroup, Label, Input, FormFeedback,  } from 'reactstrap';
 
 import {firebase} from '../firebase'
-import { getAnalytics } from "firebase/analytics";
+// import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 
 import ModalPopup from "../components/ModalPopup";

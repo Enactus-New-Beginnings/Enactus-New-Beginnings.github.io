@@ -6,8 +6,8 @@ import { Button, Container, Row, Col } from 'reactstrap';
 import { Link } from "react-router-dom";
 import React from "react";
 import ReactGA from "react-ga4";
-import { getAnalytics } from "firebase/analytics";
-import {firebase} from '../firebase';
+// import { getAnalytics } from "firebase/analytics";
+// import {firebase} from '../firebase';
 
 function App() {
   React.useEffect(()=>{

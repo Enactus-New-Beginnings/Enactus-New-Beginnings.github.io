@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Button, FormGroup, Label, FormText, Form, Table, ButtonGroup } from 'reactstrap';
+import { Input, Button, FormGroup, FormText, Form, Table, ButtonGroup } from 'reactstrap';
 
 import {firebase} from '../firebase'
 import { signOut, updateEmail, EmailAuthProvider, reauthenticateWithCredential, updatePassword } from "firebase/auth";
@@ -130,7 +130,6 @@ export default function UserProfile(props){
                 console.log(newObj)
             })
         })
-
         get(child(dbr,'users/'+props.user.uid+'/resumes/current')).then((snapshot) =>{
             if(snapshot.exists()){
                 setCurrent(snapshot.val())
@@ -139,7 +138,7 @@ export default function UserProfile(props){
             }  
         })
 
-    },[props.user.uid, storage, refreshResumes])
+    },[props.user.uid, storage, db, refreshResumes])
 
     return (
         <div>
