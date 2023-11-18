@@ -41,9 +41,9 @@ function App() {
                 Employment
               </h3>
               <p>
-                COMING SOON: Reach out to employers who don’t discriminate based
-                on past convictions. Create an account and upload your resume to
-                get matched with oppurtunities most relevant to you!
+                Reach out to employers who don’t discriminate based on the past.
+                Create an account and upload your resume to get matched with
+                oppurtunities most relevant to you!
               </p>
               <Link to="/profile#resume">
                 <Button color="primary" size="lg" style={{ margin: "2%" }}>
