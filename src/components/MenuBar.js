@@ -65,7 +65,13 @@ export default function MenuBar(){
                       Shelter
                     </DropdownItem>
                   </Link>
-                  <DropdownItem divider />
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Career
+                </DropdownToggle>
+                <DropdownMenu end>
                   <Link to="/resources/videos/career" style={{textDecoration: 'none'}}>
                     <DropdownItem>
                       Career Help <FontAwesomeIcon icon={solid('video')} />
