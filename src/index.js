@@ -18,6 +18,7 @@ import VideoGallery from './routes/VideoGallery';
 import Profile from './routes/Profile';
 import Employment from './routes/Employment';
 import ReactGA from "react-ga4";
+import Contact from './routes/Contact';
 ReactGA.initialize("G-FVYZBPF2XJ");
 
 const videos=require('./components/VideoData')
@@ -64,6 +65,9 @@ const router = createBrowserRouter([
         loader: async ()=> {
           return fetch (`https://us-central1-newbeginnings-7fed9.cloudfunctions.net/widgets/resources/employment`);
         },
+      },{
+        path: "contact",
+        element: <Contact />
       }
     ],
   },
