@@ -98,6 +98,22 @@ function App() {
                 Coming Soon!
               </Button>
             </Col>
+            <Col sm="4" style={{ margin: 'auto', textAlign: 'center' }}>
+              <h3>
+                <FontAwesomeIcon icon={solid("envelope")} />
+                <br />
+                Contact Us
+              </h3>
+              <p>
+                Get in contact with us, via email, regarding any questions, concerns, or opportunities.
+              </p>
+              <Link to="/contact">
+                <Button color="danger" size="lg" style={{ margin: "2%" }}>
+                  Deliver Email
+                </Button>
+              </Link>
+              {/* <br /> */}
+            </Col>
           </Row>
         </Container>
       </div>

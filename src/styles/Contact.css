@@ -1,0 +1,47 @@
+    .contact-container {
+    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    /* text-shadow: 2px 2px 25px; */
+    /* margin: 50px; */
+    margin: 0; /* Remove margin */
+    background-image: url("../img/resource-bg.jpg");
+    background-size: cover;
+    min-height: 100vh;
+    background-position: center;
+    background-color: rgb(140, 140, 140);
+  }
+  
+  .contact-container h1 {
+    /* color: #fbad05; */
+    text-align: center;
+    font-size: 45px;
+    font-weight: bolder;
+    /* background-color: rgb(120, 120, 120); */
+  }
+  
+  .contact-container div {
+    /* padding-top: 10px; */
+    padding-right: 50px;
+    padding-bottom: 30px;
+    padding-left: 50px;
+  }
+  
+  .contact-container label {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px; /* Increased margin for more space */
+  }
+  
+  .contact-container input,
+  .contact-container textarea {
+    display: flex;
+    align-self: center;
+    margin: 0 auto;
+  }
+  
+  .contact-container button {
+    size: 200px;
+  }
+  

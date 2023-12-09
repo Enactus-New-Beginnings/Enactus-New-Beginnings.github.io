@@ -84,6 +84,11 @@ export default function MenuBar(){
                   </Link>
                 </DropdownMenu>
               </UncontrolledDropdown>
+              <Link to="/about" style={{textDecoration: 'none'}}>
+                <NavItem>
+                  <NavLink>About Us</NavLink>
+                </NavItem>
+              </Link>
             </Nav>
           </Collapse>
         </Navbar>
