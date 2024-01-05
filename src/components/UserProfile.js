@@ -18,6 +18,7 @@ import '../styles/Resources.css'
  * Renders the user signup/login page if they are not authenticated, otherwise renders the user's profile
  * @module Profile
  */
+
 export default function UserProfile(props){
     const db = getDatabase(firebase);
     const [storage] = React.useState(getStorage(firebase));
@@ -42,13 +43,11 @@ export default function UserProfile(props){
     function handleChange(event) {
         setFile(event.target.files[0]);
     }
-
     function handleUpload() {
         if (!file) {
             toggleModal(true)
             setModalHeader("File Not Found")
             setModalText("Please choose a file first!")
-
         }
         const storageRefr = storageRef(storage, `/${props.user.uid}/resumes/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRefr, file);
