@@ -43,7 +43,6 @@ export default function UserProfile(props){
     function handleChange(event) {
         setFile(event.target.files[0]);
     }
-
     function handleUpload() {
         if (!file) {
             toggleModal(true)
