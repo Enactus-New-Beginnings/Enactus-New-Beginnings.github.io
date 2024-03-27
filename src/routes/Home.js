@@ -107,11 +107,11 @@ function App() {
               <p>
                 Get in contact with us, via email, regarding any questions, concerns, or opportunities.
               </p>
-              <Link to="/contact">
+              <a href="mailto:enactusnewbeginning@gmail.com">
                 <Button color="danger" size="lg" style={{ margin: "2%" }}>
                   Deliver Email
                 </Button>
-              </Link>
+              </a>
               {/* <br /> */}
             </Col>
           </Row>
