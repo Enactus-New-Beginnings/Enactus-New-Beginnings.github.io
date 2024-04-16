@@ -131,7 +131,7 @@ export default function MenuBar() {
                     </DropdownItem>
                   </Link>
                   <Link
-                    to="/resources/videos/finance"
+                    to="/aibot"
                     style={{ textDecoration: "none" }}
                   >
                     <DropdownItem>

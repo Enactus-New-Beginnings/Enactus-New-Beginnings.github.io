@@ -20,6 +20,8 @@ import Employment from './routes/Employment';
 import ReactGA from "react-ga4";
 import Contact from './routes/Contact';
 import About from './routes/About';
+import Aibot from './routes/Aibot';
+
 ReactGA.initialize("G-FVYZBPF2XJ");
 
 const videos=require('./components/VideoData')
@@ -67,6 +69,10 @@ const router = createBrowserRouter([
           return fetch (`https://us-central1-newbeginnings-7fed9.cloudfunctions.net/widgets/resources/employment`);
         },
       },{
+        path: "Aibot",
+        element: <Aibot />,
+      },
+      {
         path: "contact",
         element: <Contact />
       },{
