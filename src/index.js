@@ -12,6 +12,7 @@ import MenuBar from './components/MenuBar';
 import ResourcesSideBar from './components/ResourcesSideBar';
 
 import Home from './routes/Home'
+import NewHome from './routes/newHome'
 import ErrorPage from './routes/ErrorPage'
 import ResourceTables from './routes/ResourceTables';
 import VideoGallery from './routes/VideoGallery';
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
+        element: <NewHome />,
+      },
+      {
+        path: "test",
         element: <Home />,
       },
       {
