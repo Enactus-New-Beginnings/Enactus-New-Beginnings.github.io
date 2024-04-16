@@ -1,5 +1,5 @@
 import logo from "../img/logo.png";
-import "../styles/newHome.css";
+import "../styles/NewHome.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { Button, Container, Row, Col } from "reactstrap";
