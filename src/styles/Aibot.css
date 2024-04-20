@@ -21,7 +21,8 @@ body {
 
 .navbar {
     height: 60px;
-    background-color: white;
+    /* background-color: white; */
+    background-color: transparent;
 }
 
 .chat-container {

@@ -15,6 +15,10 @@ div.fixed {
     width: 32px;
     pointer-events: none;
   }
+
+  #ml-auto {
+    color: white;
+  }
   
   @media (prefers-reduced-motion: no-preference) {
     .top-logo {
