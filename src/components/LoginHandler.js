@@ -45,8 +45,10 @@ export default function Profile(){
      * @param {string} email Email string to check
      * @returns boolean value of whether string is a valid email address
      */
-    function checkForValidEmail(email){
-        return email.split("@").length===2 && email.split("@")[1].split(".").length===2
+    function checkForValidEmail(email) {
+        // Regular expression for email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     }
 
     /**
