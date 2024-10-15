@@ -1,75 +1,142 @@
-.App {
-  text-align: center;
-  background-color: #4d404a;
+.common-container {
+  height: 288vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.App-logo {
-  height: 30vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-pulse infinite 2s alternate;
-  }
-}
-
-.App-header {
-  background-image: url("../img/sunrise.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  padding: 2%;
+.homepage {
+  background: linear-gradient(to bottom, #7face7,#c3cee2, #d5d1ce);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: flex-start; 
+  height: 100%; 
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-pulse {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(0.95);
-  }
-}
-
-.title{
-  font-size: 4em;
-  font-weight: 700;
-  margin: 0;
-  color: #ffffff;
-  background: #fbf8ec;
-  background: -moz-linear-gradient(top, #ffffff 35%, #E1683C 100%);
-  background: -webkit-linear-gradient(top, #ffffff 35%,#E1683C 100%);
-  background: -ms-linear-gradient(top, #ffffff 35%,#E1683C 100%);
-  background: linear-gradient(to bottom, #ffffff 35%,#E1683C 100%);
-  
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  margin-bottom: 3%;
-  line-height: 1.3;
-}
-
-.box{
-  border-radius: 10px;
-  background-image: linear-gradient(to right, rgba(255, 0, 0, 0.4), rgba(255, 105, 91, 0.4) , rgba(255, 165, 0, 0.4));
+.logo {
+  width: 230px; 
   height: auto;
-  width: 70vw;
-  padding: 1%;
+  margin-top: 100px;
+  align-items: center;
 }
 
-.features{
-  background-color: #4d404a;
-  color: white;
-  padding: 3%;
+.arrow {
+  font-size: 3rem;
+  cursor: pointer;
+  margin-top: 0.4px;
+  color: #c5602e71;
+
 }
+
+.homepage h1{
+  font-family: 'Helvetica', sans-serif; 
+  font-size: 7.6rem;
+  margin-top:1px;
+  color:#fcf6f1;
+
+}
+
+.homepage h2{
+  font-family: 'Georgia', sans-serif; 
+  font-size: 1.7rem;
+  margin-bottom:90px;
+  color:#997f84
+}
+.top-right-text {
+  position: fixed;
+  top: 50px;
+  right: 20px;
+  color: #c57045;
+  font-size: .98rem;
+  font-family: 'Arial', sans-serif; 
+  font-weight: bold;
+}
+
+.info-page {
+  padding: 20px;
+  height: 200vh;
+  /*background: linear-gradient(to bottom, #d5d1ce, #eebe9a, #e79879);*/
+  background: linear-gradient(to bottom, #e79879, #af7676, #786174);
+  text-align: center;
+}
+
+.info-page h2 {
+  font-family: 'Helvetica', sans-serif; 
+  font-size: 2.7rem;
+  margin-top:60px;
+  color:#fcf6f1
+}
+
+.info-box-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.info-box {
+  width: 28%;
+  padding: 3px;
+  background-color: #f0f0f007;
+  /*#a9a1ca*/
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 7px 10px rgba(0, 0, 0, 0.5); 
+  /*transition: box-shadow 0.3s ease; */
+  height: 369px
+}
+
+.info-box h3 {
+  color: #997f84;
+  font-size: 1.9rem;
+}
+
+.info-box p {
+  margin: 10px 0;
+  color: rgb(170, 89, 23);
+}
+
+.contact {
+  text-align: center;
+  color: #4a3c3e;
+  margin-top: 150px;
+  font-size: 0.95rem; 
+  font-weight: bold;
+}
+
+.about-page {
+  height: 230vh;
+  background: linear-gradient(to bottom, #d5d1ce, #eebe9a, #e79879);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; 
+}
+
+.about-page h1 {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 3.2rem;
+  margin-top: 100px;
+  color: #fff;
+}
+
+.about-page .arrow {
+  font-size: 3rem;
+  cursor: pointer;
+  margin-top: 150px;
+  color: #c5602e71;
+}
+
+.about-info-box {
+  padding: 20px;
+  background-color: #f0f0f000;
+  border-radius: 8px;
+  width: 1200px;
+  height: 300px;
+  text-align: left;
+}
+
+.about-info-box h2 {
+  color: #997f84;
+}
+
+

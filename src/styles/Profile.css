@@ -1,5 +1,4 @@
 .Profile-header {
-  background-image: url("../img/mountains.jpg");
     background-size: cover;
     background-position: center;
     padding-top: 3%;
@@ -9,7 +8,7 @@
     align-items: center;
     justify-content: flex-start;
     font-size: calc(10px + 2vmin);
-    color: white;
+    color: rgb(215, 91, 91);
   }
 
   .hero-text {
@@ -18,28 +17,30 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color: rgb(255, 255, 255);
   }
   .Login-header {
-    background-image: url("../img/mountains.jpg");
     background-size: cover;
     background-position: center;
-    min-height: 100vh;
+    height: 100vh;
     padding: 2%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+    font-size: 10px;
+    color: rgb(83, 55, 55);
   }
 
   .Login-box{
     border-radius: 10px;
-    background-image: linear-gradient(to right, rgba(0, 64, 255, 0.2), rgba(171, 247, 255, 0.2) , rgba(52, 144, 201, 0.2));
+    background: rgba(255, 255, 255, 0);
     height: auto;
-    width: 70vw;
+    width: 600px;
     padding: 2%;
+    margin-bottom: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:small;
   }
 
   .Top-profile-textRows{
@@ -50,11 +51,16 @@
   h1{
     text-align: center;
     color: rgb(46, 50, 63);
+    font-family: Verdana ;
+    font-weight: bold;
+    font-size: 36px;
+    color: #c86842;
   }
 
   h2{
     text-align: center;
-    color: rgb(77, 94, 111);
+    color: rgb(46, 140, 235);
+    font-size: 1px;
   }
 
   h1.resumes{
@@ -65,17 +71,17 @@
   p.resumes{
     text-align: center;
   }
-
+    
   button.link {
     background: none;
     border: none;
     padding: 0;
-    /*optional*/
+    cursor: pointer;
     font-family: arial, sans-serif;
-    /*input has OS specific font-family*/
     color: #069;
     text-decoration: underline;
     cursor: pointer;
+    border-radius: 5px;
   }
 
   .center {
@@ -108,4 +114,110 @@ div.upload-resume{
 .resume-table{
   padding-left: 1.5vw;
   padding-right: 1.5vw
+}
+
+.signup-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  text-align: center;
+}
+
+.signup-button p {
+  margin-bottom: 10px;
+}
+
+.circular-button {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: rgba(199, 176, 42, 0);
+    /* #e79879*linear-gradient(to bottom, #d5d1ce, #eebe9a);*/
+    color: rgb(164, 19, 19);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font:Calibri;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
+
+}
+.circular-button:hover {
+  transform: scale(1.1);
+}
+
+.custom-form-group {
+  margin-bottom: 10px; 
+  
+}
+.login-container {
+  background: linear-gradient(to bottom, #7face7,#c3cee2, #d5d1ce, #d5d1ce,#eebe9a);
+}
+
+.custom-form-group input {
+  height: 40px; 
+  background-color: #f5ede9; 
+  
+}
+
+.signup-container {
+  background: linear-gradient(to bottom, #d5d1ce, #eebe9a, #e79879);
+}
+
+@keyframes expandButton {
+  from {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    background: linear-gradient(to bottom, #7face7,#c3cee2, #d5d1ce, #d5d1ce, #eebe9a);
+    transform: translate(0, 0);
+    color: rgba(255, 255, 255, 0);
+    box-shadow: none;
+  }
+  to {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #d5d1ce, #eebe9a, #e79879);
+    transform: translate(calc(100vw - 100px - 20px), calc(100vh - 100px - 20px)); 
+    color: rgba(255, 255, 255, 0);
+    box-shadow: none;
+
+  }
+}
+@keyframes collapseButton {
+  from {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    background: linear-gradient(to bottom, #d5d1ce, #eebe9a, #e79879);
+    transform: translate(0, 0);
+    color: rgba(255, 255, 255, 0);
+    box-shadow: none;
+  }
+  to {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #d5d1ce, #eebe9a, #e79879);
+    transform: translate(calc(100vw - 100px - 20px), calc(100vh - 100px - 20px)); 
+    color: rgba(255, 255, 255, 0);
+    box-shadow: none;
+
+  }
+}
+
+.circular-button {
+  animation-duration: 1.6s; 
+  animation-fill-mode: forwards; 
+}
+
+.circular-button.expand-animation {
+  animation-name: expandButton; 
+}
+
+.circular-button.collapse-animation {
+  animation-name: collapseButton; 
 }

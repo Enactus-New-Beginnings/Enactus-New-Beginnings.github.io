@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactGA from "react-ga4";
 import { Button, Form, FormGroup, Label, Input, FormFeedback,  } from 'reactstrap';
 
@@ -17,18 +17,29 @@ import '../styles/Profile.css'
 export default function Profile(){
     // const analytics=getAnalytics(firebase)
 
-    const [email, setEmail] = React.useState("")
-    const [password, setPassword] = React.useState("")
-    const [loginState, toggleLoginState] = React.useState(true)
-    const [confirmPassword, setConfirmedPassword] = React.useState("")
-    const [showForgotPasswordModal, toggleModal] = React.useState(false);
+        const [email, setEmail] = useState("");
+        const [password, setPassword] = useState("");
+        const [loginState, toggleLoginState] = useState(true);
+        const [confirmPassword, setConfirmedPassword] = useState("");
+        const [showForgotPasswordModal, toggleModal] = useState(false);
+        const [showGeneralModal, toggleGeneralModal] = useState(false);
+        const [generalModalText, setModalText] = useState("");
+        const [generalModalHeader, setModalHeader] = useState("");
+        const [auth] = useState(getAuth(firebase));
+        const [buttonAnimation, setButtonAnimation] = useState("");
+        const containerClassName = loginState ? 'login-container' : 'signup-container';
 
-    const [showGeneralModal, toggleGeneralModal] = React.useState(false);
-    const [generalModalText, setModalText] = React.useState("")
-    const [generalModalHeader, setModalHeader] = React.useState("")
-
-    const [auth] = React.useState(getAuth(firebase));
     
+        /**
+         * Toggles between login and signup states and applies animation.
+         */
+        function toggleLogin() {
+            toggleLoginState(!loginState);
+            setButtonAnimation(loginState ? "expand-animation" : "collapse-animation");
+            setTimeout(() => {
+                setButtonAnimation("");
+            }, 1000);
+        }
     /**
      * Checks whether a password is secure: in this case, whether it is at least 8 characters long and contains at least one uppercase letter, lowercase letter and number
      * @function checkForStrongPassword
@@ -94,9 +105,10 @@ export default function Profile(){
         setModalHeader(header)
         setModalText(body)
     }
+  
     
     return (
-        <div className="Login-header">
+        <div className={`Login-header ${containerClassName}`}>
         <div className='Login-box'>
             <ModalPopup showModal={showForgotPasswordModal} toggleModal={()=>{toggleModal(!showForgotPasswordModal)}}
              header={"Forgot Password?"} 
@@ -136,21 +148,25 @@ export default function Profile(){
                 <Button color="primary" onClick={()=>{toggleGeneralModal(!showGeneralModal)}}>OK</Button>
             </div>
             }/>
-            <h1>{loginState?"Log In to":"Sign Up For"} New Beginnings</h1>
-            <p style={{textAlign:'center'}}>{loginState?"Don't have an account?":"Already have an account?"} <button className="link" onClick={() =>{ 
-                toggleLoginState(!loginState) }}>Click here</button> to {loginState?"sign up":"log in"}</p>  
+            <h1>{loginState?"Access Your Profile:":"Make Your Account:"} </h1>
+            
+            <div className="signup-button">
+                    
+                        <Button className={`circular-button ${buttonAnimation}`} onClick={toggleLogin}  >
+                        <p>{loginState ? "Don't have an account?" : "Already have an account?"}</p>
+                        {loginState ? "Sign Up" : "Log In"}
+                    </Button>
+            </div>
             <Form>
-                <FormGroup>
-                    <Label for="email" size="lg">Email</Label>
-                    <Input valid={checkForValidEmail(email)} invalid={email.length>0&&!checkForValidEmail(email)} type="email" name="email" id="email" value={email} placeholder="email@example.com" bsSize="lg" onChange={(e) => {
+                <FormGroup className="custom-form-group">
+                    <Label for="email" size="lg"></Label>
+                    <Input valid={checkForValidEmail(email)} invalid={email.length>0&&!checkForValidEmail(email)} type="email" name="email" id="email" value={email} placeholder="Email" bsSize="small" onChange={(e) => {
                         setEmail(e.target.value)
                     }}/>
                     <FormFeedback valid/>
                     <FormFeedback invalid>Please enter a valid email</FormFeedback>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="password" size="lg">Password</Label>
-                    <Input valid={checkForStrongPassword(password)} invalid={password.length>0&&!checkForStrongPassword(password)} type="password" name="password" id="password" placeholder="enter password" bsSize="lg" onChange={(e) => {
+                    <Label for="password" size="lg"></Label>
+                    <Input valid={checkForStrongPassword(password)} invalid={password.length>0&&!checkForStrongPassword(password)} type="password" name="password" id="password" placeholder="Password" bsSize="small" onChange={(e) => {
                         setPassword(e.target.value)
                     }} />
                     <FormFeedback valid/>
@@ -158,21 +174,25 @@ export default function Profile(){
                     {
                         !loginState?
                         <div>
-                            <Label for="Confirm Password" size="lg">Confirm Password</Label>
-                            <Input value={confirmPassword} valid={confirmPassword.length>0&&(password===confirmPassword)} invalid={confirmPassword.length>0&&(password!==confirmPassword)} type="password" name="Confirm Password" id="confirm" placeholder="re-enter password" bsSize="lg" onChange={(e) => {
+                            <Label for="Confirm Password" size="lg"></Label>
+                            <Input value={confirmPassword} valid={confirmPassword.length>0&&(password===confirmPassword)} invalid={confirmPassword.length>0&&(password!==confirmPassword)} type="password" name="Confirm Password" id="confirm" placeholder="Re-enter password" bsSize="small" onChange={(e) => {
                                 setConfirmedPassword(e.target.value)
                             }} />
                             <FormFeedback valid/>
                             <FormFeedback invalid>Passwords do not match!</FormFeedback>
                         </div>:<></>
                     }
-                    <p style={{fontSize: 15}}>
-                        Forgot password? <button className="link" type="button" onClick={()=>{
-                            toggleModal(true)
-                        }}>Click here.</button>    
+                    <p style={{ fontSize: 15, marginTop: '5px' }}> 
+                    {loginState ? (
+                         <>
+                           &nbsp;Forgot password? <button className="link" type="button" onClick={() => {
+                         toggleModal(true);
+                        }}>Click here.</button>
+                         </>
+                         ) : ""}
                     </p>
                 </FormGroup>
-                <Button size="lg" color="primary" disabled={!(checkForValidEmail(email)&&checkForStrongPassword(password))||(loginState?false:password!==confirmPassword)} className="center" onClick={()=>{
+                <Button size="small" style={{ backgroundColor: '#4d7caf84', color: '#023978' }} disabled={!(checkForValidEmail(email)&&checkForStrongPassword(password))||(loginState?false:password!==confirmPassword)} className="center" onClick={()=>{
                        handleAuthentication(auth,loginState,email,password,confirmPassword)  
                 }}>{loginState?"Log In":"Sign Up"}</Button>
             </Form>

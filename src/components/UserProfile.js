@@ -224,7 +224,7 @@ export default function UserProfile(props){
                             <Input style={{width:'80%'}} type="file" id="resumeSelect" accept=".pdf" onChange={handleChange}/>
                             <Button style={{marginLeft: '2%'}} color="primary" className="uploadButton" onClick={handleUpload}>⬆ Upload</Button>
                             </div>
-                            <FormText color="black">Upload a resume in .pdf format to be connected to relevant employer oppurtunities around New Jersey. Once you select a file, press the "⬆ Upload" button.</FormText>
+                            <FormText color="black">Upload a resume in .pdf format to be connected to relevant employer opportunities around New Jersey. Once you select a file, press the "⬆ Upload" button.</FormText>
                         </FormGroup>
                     </Form>
                 </div>
