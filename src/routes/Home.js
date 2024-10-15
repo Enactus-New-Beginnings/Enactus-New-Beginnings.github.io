@@ -45,7 +45,7 @@ const Home = () => {
           </div>
           <div className="info-box">
             <h3>Chatbot</h3>
-            <p>Lalalalalala</p>
+            <p>This is the chatbot</p>
           </div>
         </div>
         <p className="contact">Contact Us<p>555-555-5555</p>
