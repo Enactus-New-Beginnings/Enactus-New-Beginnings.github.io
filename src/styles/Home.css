@@ -1,142 +1,121 @@
 .common-container {
-  height: 288vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  background: #f8f8f8;
 }
 
 .homepage {
-  background: linear-gradient(to bottom, #7face7,#c3cee2, #d5d1ce);
+  background: linear-gradient(to bottom, #7face7, #c3cee2, #d5d1ce);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; 
-  height: 100%; 
+  justify-content: center;
+  height: 100vh;
+  padding-bottom: 100px;
 }
 
 .logo {
-  width: 230px; 
+  width: 200px;
   height: auto;
   margin-top: 100px;
-  align-items: center;
 }
 
 .arrow {
-  font-size: 3rem;
+  font-size: 2.5rem;
   cursor: pointer;
-  margin-top: 0.4px;
+  margin-top: 10px;
   color: #c5602e71;
-
 }
 
-.homepage h1{
-  font-family: 'Helvetica', sans-serif; 
-  font-size: 7.6rem;
-  margin-top:1px;
-  color:#fcf6f1;
-
+.homepage h1 {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 6rem;
+  margin-top: 20px;
+  color: #fcf6f1;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
 }
 
-.homepage h2{
-  font-family: 'Georgia', sans-serif; 
-  font-size: 1.7rem;
-  margin-bottom:90px;
-  color:#997f84
-}
-.top-right-text {
-  position: fixed;
-  top: 50px;
-  right: 20px;
-  color: #c57045;
-  font-size: .98rem;
-  font-family: 'Arial', sans-serif; 
-  font-weight: bold;
+.homepage h1:hover {
+  transform: scale(1.05);
 }
 
-.info-page {
-  padding: 20px;
-  height: 200vh;
-  /*background: linear-gradient(to bottom, #d5d1ce, #eebe9a, #e79879);*/
-  background: linear-gradient(to bottom, #e79879, #af7676, #786174);
+.homepage h2 { 
+  font-family: 'Georgia', sans-serif;
+  font-size: 1.8rem;
+  color: #997f84;
+  margin-bottom: 20px;
+  /* heading under title, a rutgers enactive initiative*/
+}
+
+.about-page {
+  padding: 70px;
+  background: #e79879;
+  color: #fcf6f1;
   text-align: center;
 }
 
-.info-page h2 {
-  font-family: 'Helvetica', sans-serif; 
-  font-size: 2.7rem;
-  margin-top:60px;
-  color:#fcf6f1
+.about-info-box {
+  display: flex; 
+  align-items: center; 
+  background-color: #08d970;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 10px;
+  width: 80%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.about-info-box img {
+  width: 30%; 
+  height: auto;
+  border-radius: 8px; 
+  margin-right: 20px; 
+}
+
+
+.info-page {
+  background: linear-gradient(to bottom, #e79879, #af7676, #786174);
+  padding: 60px 20px;
+  text-align: center;
 }
 
 .info-box-container {
   display: flex;
   justify-content: space-around;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .info-box {
-  width: 28%;
-  padding: 3px;
-  background-color: #f0f0f007;
-  /*#a9a1ca*/
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 7px 10px rgba(0, 0, 0, 0.5); 
-  /*transition: box-shadow 0.3s ease; */
-  height: 369px
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  width: 25%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .info-box h3 {
+  font-size: 1.6rem;
   color: #997f84;
-  font-size: 1.9rem;
 }
 
 .info-box p {
-  margin: 10px 0;
-  color: rgb(170, 89, 23);
+  color: #5f4b4b;
 }
 
 .contact {
-  text-align: center;
-  color: #4a3c3e;
-  margin-top: 150px;
-  font-size: 0.95rem; 
+  margin-top: 50px;
+  font-size: 1rem;
   font-weight: bold;
+  color: #4a3c3e;
 }
 
-.about-page {
-  height: 230vh;
-  background: linear-gradient(to bottom, #d5d1ce, #eebe9a, #e79879);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; 
-}
-
-.about-page h1 {
-  font-family: 'Helvetica', sans-serif;
-  font-size: 3.2rem;
-  margin-top: 100px;
-  color: #fff;
-}
-
-.about-page .arrow {
-  font-size: 3rem;
+button {
+  background-color: #c5602e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
   cursor: pointer;
-  margin-top: 150px;
-  color: #c5602e71;
 }
-
-.about-info-box {
-  padding: 20px;
-  background-color: #f0f0f000;
-  border-radius: 8px;
-  width: 1200px;
-  height: 300px;
-  text-align: left;
-}
-
-.about-info-box h2 {
-  color: #997f84;
-}
-
-
