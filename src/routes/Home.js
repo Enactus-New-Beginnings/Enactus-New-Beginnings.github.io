@@ -8,7 +8,7 @@ const Home = () => {
     <div className="common-container">
       <div className="homepage">
       
-        <img src={Logo} alt="Logo" className="logo" />
+        <img src={Logo} alt="Logo" className="logo" /> 
         <h1>New Beginnings</h1>
         <h2> A Rutgers Enactus Initiative</h2>
         <Link to="about" smooth={true} duration={200}>
@@ -58,6 +58,6 @@ const Home = () => {
     </div>
   );
 };
-
+//insert comment
 
 export default Home
