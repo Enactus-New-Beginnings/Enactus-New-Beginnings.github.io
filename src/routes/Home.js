@@ -1,46 +1,8 @@
-import React, { useState } from 'react';
 import "../styles/Home.css";
 import { Link, Element } from 'react-scroll';
 import { Button } from "reactstrap";
 import Logo from '../img/logo.png';
-import Test from '../img/error-bg.jpg';
 
-// Array of carousel images
-const carouselImages = [
-  { id: 1, url: Logo, alt: 'Image 1' },
-  { id: 2, url: Test, alt: 'Image 2' },
-  { id: 3, url: '/path-to-image3.jpg', alt: 'Image 3' },
-];
-
-const Carousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0); // State to manage current slide index
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? carouselImages.length - 1 : prevIndex - 1));
-  };
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === carouselImages.length - 1 ? 0 : prevIndex + 1));
-  };
-
-  return (
-    <div className="carousel-container">
-      {/* Carousel slides */}
-      <div
-        className="carousel-slides"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-      >
-        {carouselImages.map((image) => (
-          <div key={image.id} className="carousel-slide">
-            <img src={image.url} alt={image.alt} />
-          </div>
-        ))}
-      </div>
-      <button className="prev" onClick={prevSlide}>&#10094;</button>
-      <button className="next" onClick={nextSlide}>&#10095;</button>
-    </div>
-  );
-};
 
 const Home = () => {
   return (
@@ -56,36 +18,36 @@ const Home = () => {
       </div>
 
       <Element name="about" className="about-page">
-  <h1>Our Mission</h1>
+  <h1>About Our Project</h1>
   <div className="about-info-box">
-    {/* Labels */}
-    <div className="info-labels">
-      <h3 className="label-statistics-label">Statistics</h3>
-      <h3 className="label-what-we-do-label">What We Do</h3>
-    </div>
-    <div className="flex-container">
-      <div className="about-info-text">
-       <img src={Logo} alt="Rutgers Enactus" className="about-banner-image" />
-        <p>
-          Rutgers Enactus New Beginnings is a dedicated initiative with the mission of assisting formerly incarcerated individuals in their journey towards societal reintegration and self-sufficiency. Our primary focus is on the state of New Jersey, aiming to reduce the recidivism rate by providing essential resources such as food, shelter, and potential job opportunities.
-        </p>
-        <div class="divider"></div>
-      </div>
-      <Carousel />
+  {/* Statistics Box */}
+  <div className="info-box statistics-box">
+    <h3 className="label-statistics-label">Statistics</h3>
+    <div className="statistics-content">
+      <img src={Logo} alt="Rutgers Enactus" className="statistics-image" />
+      <figcaption>"This is caption, insert something"</figcaption>
     </div>
   </div>
+
+  {/* Our Mission Box */}
+  <div className="info-box mission-box">
+    <h3 className="label-what-we-do-label">Our Mission</h3>
+    <p>To provide essential resources, job opportunities, 
+      and education to support incarcerated and recently
+       released individuals, fostering a sustainable 
+       program that enhances their quality of life and community reintegration.</p>
+  </div>
+</div>
   <Link to="info" smooth={true} duration={200}>
     <div className="arrow">&#9660;</div>
   </Link>
 </Element>
 
-
-
       {/* Services Section */}
       <Element name="info" className="info-page" style={{ backgroundColor: "#f0f0f0" }}>
         <h2>What we offer</h2>
            {/* black border Section */}
-        <div className="info-box-container" style={{ backgroundColor: "#997f84" }}>  
+        <div className="info-box-container">  
           <div className="info-box">
             <h3>Resources</h3>
             <p>Find housing, educational programs, and other essential support.</p>
