@@ -97,7 +97,7 @@ button:hover {
   display: flex;
   justify-content: space-between;
   gap: 20px; 
-  background: linear-gradient(135deg, rgba(112, 128, 255, 0.2), rgba(107, 115, 129, 0.2)); 
+  background: linear-gradient(135deg, rgba(112, 174, 255, 0.2), rgba(107, 115, 129, 0.2)); 
   padding: 30px;
   border-radius: 30px;
   width: 100%; 
