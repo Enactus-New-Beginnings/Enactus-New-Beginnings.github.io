@@ -134,6 +134,10 @@ button:hover {
   color: #007bff;
 }
 
+.label-what-we-do-label {
+  text-align: center;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .about-info-box {
