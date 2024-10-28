@@ -149,7 +149,7 @@ button:hover {
 
 .info-page {
   font-family: 'Helvetica', serif; 
-  background-image: url("../img/sunrise2.png"); 
+  background-image: url("../img/sun.jpeg"); 
   background-attachment: fixed; 
   background-size: cover; 
   background-position: center; 
@@ -165,7 +165,7 @@ button:hover {
   left: 0; 
   right: 0; 
   bottom: 0; 
-  background-color: #ff9a4d25;
+  background-color: #001eff12;
   z-index: 1; 
 }
 
