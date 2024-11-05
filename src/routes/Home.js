@@ -17,7 +17,7 @@ const Home = () => {
         </Link>
       </div>
 
-      <Element name="about" className="about-page">
+  <Element name="about" className="about-page">
   <h1>About Our Project</h1>
   <div className="about-info-box">
   {/* Statistics Box */}
@@ -42,7 +42,6 @@ const Home = () => {
     <div className="arrow">&#9660;</div>
   </Link>
 </Element>
-
       {/* Services Section */}
       <Element name="info" className="info-page" style={{ backgroundColor: "#f0f0f0" }}>
         <h2>What we offer</h2>
