@@ -122,6 +122,11 @@ export default function MenuBar() {
                   WIP things
                 </DropdownToggle>
                 <DropdownMenu end>
+                  <Link to="/courses" style={{ textDecoration: "none" }}>
+                    <DropdownItem>
+                      Courses Page <FontAwesomeIcon icon={solid("book")} />
+                    </DropdownItem>
+                  </Link>
                   <Link
                     to="/resources/videos/finance"
                     style={{ textDecoration: "none" }}

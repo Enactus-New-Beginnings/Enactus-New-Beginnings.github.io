@@ -1,0 +1,12 @@
+[
+    {
+      "id": "personal-finance",
+      "title": "Personal Finance",
+      "description": "Learn the essentials of managing your finances, budgeting, and investing."
+    },
+    {
+      "id": "web-development",
+      "title": "Web Development",
+      "description": "Master the basics of front-end and back-end web development."
+    }
+  ]

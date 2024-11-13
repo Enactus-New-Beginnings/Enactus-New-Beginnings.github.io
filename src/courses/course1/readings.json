@@ -1,0 +1,10 @@
+{
+  "title": "GED Preparation - Course 1",
+  "description": "A comprehensive guide to help you prepare for the GED exam.",
+  "sections": [
+    { "id": "1", "title": "Mathematical Reasoning" },
+    { "id": "2", "title": "Reasoning Through Language Arts" },
+    { "id": "3", "title": "Social Studies" },
+    { "id": "4", "title": "Science" }
+  ]
+}

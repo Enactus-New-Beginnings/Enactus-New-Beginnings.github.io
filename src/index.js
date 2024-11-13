@@ -6,32 +6,26 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
 import reportWebVitals from './reportWebVitals';
 
 import MenuBar from './components/MenuBar';
-import ResourcesSideBar from './components/ResourcesSideBar';
-
-import Home from './routes/Home'
-import ErrorPage from './routes/ErrorPage'
-import ResourceTables from './routes/ResourceTables';
-import VideoGallery from './routes/VideoGallery';
+import Home from './routes/Home';
+import Readings from './routes/ReadingsPage';  // Add this line for Readings
+import ErrorPage from './routes/ErrorPage';
 import Profile from './routes/Profile';
 import Employment from './routes/Employment';
-import ReactGA from "react-ga4";
 import Contact from './routes/Contact';
 import About from './routes/About';
-ReactGA.initialize("G-FVYZBPF2XJ");
+import CourseRouter from './routes/CourseRouter';
+import CoursesPage from './routes/CoursesPage';
 
-const videos=require('./components/VideoData')
-
-/**
- * Enables client-side routing for our web app. We take advantage of v6 features such as loaders to provide data to our resource tables before rendering. A helpful tutorial for quickly learning React Router can be found [here.]{@link https://reactrouter.com/en/main/start/tutorial}
- */
+// Initialize the router
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MenuBar/>,
-    errorElement: <ErrorPage/>,
+    element: <MenuBar />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "",
@@ -39,40 +33,32 @@ const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element: <Profile />
+        element: <Profile />,
       },
       {
-        path: "resources",
-        element: <ResourcesSideBar/>,
-        children: [
-          {
-            path: "videos/:resourceName",
-            element: <VideoGallery/>,
-            loader: (({params})=>{
-              return videos[params.resourceName]
-            })
-          },
-          {
-            path: ":resourceName",
-            element: <ResourceTables/>,
-            loader: async ({ params }) => {
-              return fetch(`https://us-central1-newbeginnings-7fed9.cloudfunctions.net/widgets/resources/${params.resourceName}`);
-            },
-          }
-        ]
-      },{
         path: "employment",
         element: <Employment />,
-        loader: async ()=> {
-          return fetch (`https://us-central1-newbeginnings-7fed9.cloudfunctions.net/widgets/resources/employment`);
-        },
-      },{
+      },
+      {
         path: "contact",
-        element: <Contact />
-      },{
+        element: <Contact />,
+      },
+      {
         path: "about",
-        element: <About />
-      }
+        element: <About />,
+      },
+      {
+        path: "readings", // New route for readings
+        element: <Readings />,
+      },
+      {
+        path: "courses/:courseId/:pageType",
+        element: <CourseRouter />,
+      },
+      {
+        path: "courses",
+        element: <CoursesPage />,  // Add CoursesPage at /courses
+      },
     ],
   },
 ]);
@@ -84,7 +70,4 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
