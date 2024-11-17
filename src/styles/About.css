@@ -6,7 +6,7 @@
     /* text-shadow: 2px 2px 25px; */
     /* margin: 50px; */
     margin: 0; /* Remove margin */
-    background-image: url("../img/resource-bg.jpg");
+    background: linear-gradient(to bottom, #7face7, #c3cee2, #d5d1ce, #eebe9a);
     background-size: cover;
     min-height: 100vh;
     background-position: center;

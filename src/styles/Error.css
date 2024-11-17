@@ -1,6 +1,6 @@
     .Error-header {
-      background: linear-gradient(to bottom, #7face7, #c3cee2, #d5d1ce, #eebe9a);
-      background-size: cover;
+    background: linear-gradient(to bottom, #7face7, #c3cee2, #d5d1ce, #eebe9a);
+    background-size: cover;
     background-position: center;
     height: 100vh;
     padding: 2%;

@@ -1,67 +1,74 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Papa from 'papaparse'; // CSV parsing library
+import Papa from 'papaparse';
 import "../styles/newresources.css";
 
 const NewResources = () => {
   const { tab } = useParams();
   const [selectedTab, setSelectedTab] = useState(tab || 'food');
-  const [foodBanks, setFoodBanks] = useState([]); // State to store food bank data
-  const [clothingResources, setClothingResources] = useState([]); // State to store clothing resources
-  const [loading, setLoading] = useState(true); // Track loading state
-  const [searchQuery, setSearchQuery] = useState(''); // State for search query
-  const [housingResources, setHousingResources] = useState([]); // State to store housing resources
+  const [foodBanks, setFoodBanks] = useState([]);
+  const [clothingResources, setClothingResources] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [housingResources, setHousingResources] = useState([]);
 
-
-  // Fetch and parse the food bank CSV file
+  /**
+   * Fetches and parses the food bank CSV data
+   * @param {Object} result - The parsed CSV result
+   */
   useEffect(() => {
     Papa.parse('/foodbanks.csv', {
-      download: true, // assuming the file is served from the public folder
-      header: true, // Using the first row as column names
-      skipEmptyLines: true, // Skip any empty lines
-      dynamicTyping: true, // Automatically type the data (e.g., convert numbers to numbers)
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+      dynamicTyping: true,
       complete: (result) => {
         if (result && result.data) {
-          setFoodBanks(result.data); // Store parsed data in state
+          setFoodBanks(result.data);
         }
       },
       error: (err) => {
         console.error('Error parsing CSV:', err);
       },
     });
-  }, []); // Empty dependency array to run only once when component mounts
+  }, []);
 
-  // Fetch and parse the clothing CSV file
+  /**
+   * Fetches and parses the clothing resources CSV data
+   * @param {Object} result - The parsed CSV result
+   */
   useEffect(() => {
-    Papa.parse('/clothing.csv', {  // Path to the clothing CSV
-      download: true, // assuming the file is served from the public folder
-      header: true, // Using the first row as column names
-      skipEmptyLines: true, // Skip any empty lines
-      dynamicTyping: true, // Automatically type the data (e.g., convert numbers to numbers)
+    Papa.parse('/clothing.csv', {
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+      dynamicTyping: true,
       complete: (result) => {
         if (result && result.data) {
-          console.log('Clothing Resources Parsed:', result.data); // Debugging line
-          setClothingResources(result.data); // Store parsed data in state
-          setLoading(false); // Data is loaded, stop loading
+          setClothingResources(result.data);
+          setLoading(false);
         }
       },
       error: (err) => {
         console.error('Error parsing CSV:', err);
-        setLoading(false); // In case of error, stop loading
+        setLoading(false);
       },
     });
-  }, []); // Empty dependency array to run only once when component mounts
+  }, []);
 
+  /**
+   * Fetches and parses the housing resources CSV data
+   * @param {Object} result - The parsed CSV result
+   */
   useEffect(() => {
-    Papa.parse('/housing.csv', { // Path to the housing CSV
-      download: true, // Assuming the file is served from the public folder
-      header: true, // Use the first row as column names
-      skipEmptyLines: true, // Skip empty lines
-      dynamicTyping: true, // Automatically convert types
+    Papa.parse('/housing.csv', {
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+      dynamicTyping: true,
       complete: (result) => {
         if (result && result.data) {
-          console.log('Housing Resources Parsed:', result.data); // Debugging line
-          setHousingResources(result.data); // Store parsed data
+          setHousingResources(result.data);
         }
       },
       error: (err) => {
@@ -70,16 +77,29 @@ const NewResources = () => {
     });
   }, []);
 
+  /**
+   * Updates the selected tab state when the URL param changes
+   * @param {string} tab - The tab to select
+   */
   useEffect(() => {
     setSelectedTab(tab);
   }, [tab]);
 
+  /**
+   * Handles the tab click event and updates the selected tab
+   * @param {string} tab - The selected tab
+   */
   const handleTabClick = (tab) => {
-    setSelectedTab(tab); // Change the tab based on user click
+    setSelectedTab(tab);
     window.history.pushState(null, '', `/resources/${tab}`);
   };
 
-  // Function to group items into sets of three
+  /**
+   * Chunks an array into smaller arrays of a specific size
+   * @param {Array} array - The array to chunk
+   * @param {number} size - The size of each chunk
+   * @returns {Array} - An array of chunked arrays
+   */
   const chunkArray = (array, size) => {
     const result = [];
     for (let i = 0; i < array.length; i += size) {
@@ -88,42 +108,61 @@ const NewResources = () => {
     return result;
   };
 
-  // Function to handle search input change
+  /**
+   * Handles the search input change and updates the search query state
+   * @param {Object} e - The event object from the search input
+   */
   const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value); // Update the search query state
+    setSearchQuery(e.target.value);
   };
 
-  // Filter food banks based on search query (case-insensitive, checking both City and Name)
+  /**
+   * Filters food banks based on the search query
+   * @param {Array} foodBanks - The list of food banks
+   * @param {string} searchQuery - The search query entered by the user
+   * @returns {Array} - The filtered list of food banks
+   */
   const filteredFoodBanks = foodBanks.filter(foodBank => {
-    if (!searchQuery) return true; // Show all food banks if no search query
+    if (!searchQuery) return true;
     const searchTerm = searchQuery.toLowerCase();
     return (
-      (foodBank.City && foodBank.City.toLowerCase().includes(searchTerm)) || 
+      (foodBank.City && foodBank.City.toLowerCase().includes(searchTerm)) ||
       (foodBank.Name && foodBank.Name.toLowerCase().includes(searchTerm))
     );
   });
 
-  // Filter clothing resources based on search query
+  /**
+   * Filters clothing resources based on the search query
+   * @param {Array} clothingResources - The list of clothing resources
+   * @param {string} searchQuery - The search query entered by the user
+   * @returns {Array} - The filtered list of clothing resources
+   */
   const filteredClothingResources = clothingResources.filter(clothingResource => {
-    if (!searchQuery) return true; // Show all clothing resources if no search query
+    if (!searchQuery) return true;
     const searchTerm = searchQuery.toLowerCase();
     return (
-      (clothingResource.Name && clothingResource.Name.toLowerCase().includes(searchTerm)) || 
+      (clothingResource.Name && clothingResource.Name.toLowerCase().includes(searchTerm)) ||
       (clothingResource.County && clothingResource.County.toLowerCase().includes(searchTerm))
     );
   });
 
+  /**
+   * Filters housing resources based on the search query
+   * @param {Array} housingResources - The list of housing resources
+   * @param {string} searchQuery - The search query entered by the user
+   * @returns {Array} - The filtered list of housing resources
+   */
   const filteredHousingResources = housingResources.filter(housingResource => {
-    if (!searchQuery) return true; // Show all housing resources if no search query
+    if (!searchQuery) return true;
     const searchTerm = searchQuery.toLowerCase();
     return (
-      (housingResource.City && housingResource.City.toLowerCase().includes(searchTerm)) || 
-      (housingResource.Name && housingResource.Name.toLowerCase().includes(searchTerm)) 
+      (housingResource.City && housingResource.City.toLowerCase().includes(searchTerm)) ||
+      (housingResource.Name && housingResource.Name.toLowerCase().includes(searchTerm))
     );
   });
 
   if (loading) {
-    return <div>Loading...</div>; // Show loading message while CSV is being parsed
+    return <div>Loading...</div>;
   }
 
   return (
@@ -159,8 +198,6 @@ const NewResources = () => {
               onChange={handleSearchChange}
               className="search-input"
             />
-
-            {/* Display Food Banks */}
             <div className="food-bank-row">
               {chunkArray(filteredFoodBanks, 3).map((foodBankRow, index) => (
                 <div key={index} className="food-bank-row">
@@ -176,7 +213,7 @@ const NewResources = () => {
                       return (
                         <div key={index} className="food-bank-block">
                           <div className="food-bank-title">
-                            {foodBank.Name} {/* Display Name as bold */}
+                            {foodBank.Name}
                           </div>
                           <div className="food-bank-info">
                             <div><strong>City:</strong> {foodBank.City}</div>
@@ -198,7 +235,6 @@ const NewResources = () => {
 
         {selectedTab === 'clothing' && (
           <div className="clothing">
-            {/* Search Input */}
             <input
               type="text"
               placeholder="Search by county or name..."
@@ -206,13 +242,10 @@ const NewResources = () => {
               onChange={handleSearchChange}
               className="search-input1"
             />
-
-            {/* Display Clothing Resources */}
             <div className="clothing-row">
               {chunkArray(filteredClothingResources, 3).map((clothingRow, index) => (
                 <div key={index} className="clothing-row">
                   {clothingRow.map((clothingResource, index) => {
-                    console.log('Clothing Resource:', clothingResource); // Debugging line
                     if (
                       clothingResource.Name && 
                       clothingResource.County && 
@@ -223,7 +256,7 @@ const NewResources = () => {
                       return (
                         <div key={index} className="clothing-block">
                           <div className="clothing-title">
-                            {clothingResource.Name} {/* Display Name as bold */}
+                            {clothingResource.Name}
                           </div>
                           <div className="clothing-info">
                             <div><strong>County:</strong> {clothingResource.County}</div>
@@ -242,52 +275,45 @@ const NewResources = () => {
           </div>
         )}
 
-{selectedTab === 'housing' && (
-  <div className="housing">
-    <input
-      type="text"
-      placeholder="Search by city or name..."
-      value={searchQuery}
-      onChange={handleSearchChange}
-      className="search-input"
-    />
-
-    <div className="housing-row">
-      {chunkArray(filteredHousingResources, 3).map((housingRow, index) => (
-        <div key={index} className="housing-row">
-          {housingRow.map((housingResource, index) => {
-            console.log('Housing Resource:', housingResource); // Debugging line
-            if (
-              housingResource.Name && 
-              housingResource.City && 
-              housingResource.Contact && 
-              housingResource.Phone && 
-              housingResource.Address && 
-              housingResource.Description
-            ) {
-              return (
-                <div key={index} className="housing-block">
-                  <div className="housing-title">
-                    {housingResource.Name} {/* Display Name */}
-                  </div>
-                  <div className="housing-info">
-                    <div><strong>City:</strong> {housingResource.City}</div>
-                    <div><strong>Contact:</strong> {housingResource.Contact}</div>
-                    <div><strong>Phone:</strong> {housingResource.Phone}</div>
-                    <div><strong>Website:</strong> <a href={housingResource.Website}>{housingResource.Website}</a></div>
-                    <div><strong>Address:</strong> {housingResource.Address}</div>
-                    <div><strong>Description:</strong> {housingResource.Description}</div>
-                  </div>
+        {selectedTab === 'housing' && (
+          <div className="housing">
+            <input
+              type="text"
+              placeholder="Search by city or name..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              className="search-input"
+            />
+            <div className="housing-row">
+              {chunkArray(filteredHousingResources, 3).map((housingRow, index) => (
+                <div key={index} className="housing-row">
+                  {housingRow.map((housingResource, index) => {
+                    if (
+                      housingResource.Name && 
+                      housingResource.City && 
+                      housingResource.Address && 
+                      housingResource.Phone
+                    ) {
+                      return (
+                        <div key={index} className="housing-block">
+                          <div className="housing-title">
+                            {housingResource.Name}
+                          </div>
+                          <div className="housing-info">
+                            <div><strong>City:</strong> {housingResource.City}</div>
+                            <div><strong>Address:</strong> {housingResource.Address}</div>
+                            <div><strong>Phone:</strong> {housingResource.Phone}</div>
+                          </div>
+                        </div>
+                      );
+                    }
+                    return null;
+                  })}
                 </div>
-              );
-            }
-            return null;
-          })}
-        </div>
-      ))}
-    </div>
-  </div>
-)}
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
