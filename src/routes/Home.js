@@ -22,7 +22,7 @@ const Home = () => {
             Our mission is to help formerly incarcerated individuals secure
             employment, establish strong relationships with mentors, and gain
             access to local resources in order to ease their transition from
-            prison.
+            prison:
           </p>
         <div className="about-info-box">
           <h2>--</h2>

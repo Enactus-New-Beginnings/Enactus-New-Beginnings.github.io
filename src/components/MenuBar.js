@@ -114,7 +114,7 @@ export default function MenuBar() {
               </UncontrolledDropdown>
               <Link to="/about" style={{ textDecoration: "none" }}>
                 <NavItem>
-                  <NavLink>About Us</NavLink>
+                  <NavLink>Learn More</NavLink>
                 </NavItem>
               </Link>
               <UncontrolledDropdown nav inNavbar>

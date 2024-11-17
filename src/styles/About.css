@@ -8,7 +8,7 @@
     margin: 0; /* Remove margin */
     background: linear-gradient(to bottom, #7face7, #c3cee2, #d5d1ce, #eebe9a);
     background-size: cover;
-    min-height: 100vh;
+    height: 100vh;
     background-position: center;
     background-color: rgb(140, 140, 140);
   }
