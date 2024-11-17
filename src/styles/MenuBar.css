@@ -3,11 +3,14 @@ div.fixed {
     width: 100vw;
     top: 0;
     z-index: 99;
+    background: transparent !important;
   }
   div.sticky {
     position: sticky;
     top: 0;
     z-index: 99;
+    background: transparent !important;
+    
   }
 
   .top-logo {

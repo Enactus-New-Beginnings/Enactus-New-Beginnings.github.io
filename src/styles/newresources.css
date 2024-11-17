@@ -1,0 +1,224 @@
+.resource-container {
+    margin:0;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #7face7, #c3cee2, #d5d1ce, #eebe9a);
+    background-attachment: fixed;
+    background-position: center;
+    height: 100vh;
+    z-index: 100;
+    justify-content: flex-start;
+    align-items: center; /* Center the content horizontally */
+    overflow-y: scroll;
+    padding-top: 40px; /* Adjust for spacing at the top */
+  }
+  
+  .tab-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+    margin-left:-85px;
+    background: transparent;
+  }
+  
+  .tab {
+    cursor: pointer;
+    height: 60px;
+    width: 350px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: Verdana;
+    font-weight: lighter;
+    color: #b94207;
+    font-size: 18px;
+    margin-left: 80px;
+  }
+  
+  .tab:hover,
+  .active {
+    background-color: #1d68d22b;
+  }
+  
+  .content-container {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap; /* Allow blocks to wrap */
+    justify-content: center; /* Center blocks horizontally */
+    gap: 32px; /* Increase the gap between blocks */
+    max-width: 1200px; /* Optional: Limit the width of the content container */
+    width: 100%; /* Make sure the container is full width */
+  }
+  
+  /* Headings for each section */
+  .foodbanks h2,
+  .housing- h2,
+  .clothes h2 {
+    color: #806a6f;
+    font-size: 18px;
+    font-family: 'Gill Sans';
+    margin-left: 160px;
+  }
+  
+  /* Container for food banks - Flexbox for wrapping blocks */
+  .food-bank-row, .clothing-row, .housing-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px; /* Adjusted gap between blocks */
+    justify-content: center; /* Center the blocks horizontally */
+    margin-top: 20px; /* Space between tab content and rows */
+    width: 100%; /* Ensure the row takes up the full width */
+  }
+  
+  /* Individual food bank block - More vertical, less wide */
+  .food-bank-block {
+    background-color: rgba(255, 255, 255, 0.301);
+    padding: 9px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: calc(33% - 20px);  /* Fixed width 
+    height: 310px; Fixed height for uniform blocks */
+    box-sizing: border-box; /* Ensure padding is included in width/height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left; /* Center the text inside blocks */
+    min-width: 280px; /* Prevent shrinking to less than the set width */
+  }
+  
+  /* Title of the food bank block (name) - bold and larger font */
+  .food-bank-title {
+    font-weight: bold;
+    display: flex;
+    font-size: 18px; /* Slightly smaller title font */
+    margin-top: 20px; /* Reduced margin between title and content */
+    white-space: normal; /* Allow name to wrap and not cut off */
+    word-wrap: break-word; /* Ensure long names wrap onto the next line */
+  }
+  .food-bank-info {
+    margin-bottom: 40px;/* Fixed space between the title and the information */
+    
+  }
+  
+  /* Information underneath the title - smaller font */
+  .food-bank-info div {
+    font-size: 14px;
+    margin-bottom: 6px; /* Space between different pieces of info */
+    white-space: normal; /* Allow text to wrap */
+    line-height: 1.4; /* Improve readability of the text */
+  }
+  
+  /* Ensure the content inside blocks is aligned properly */
+  .food-bank-block > .food-bank-title,
+  .food-bank-block > .food-bank-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  /* Search Bar Container */
+  .search-input {
+    width: 800px; /* Set the width of the search bar */
+    padding: 10px;
+    margin: 20px auto; /* This centers the input horizontally with some space above and below */
+    margin-top: 30px;
+    display: block; /* Ensures it takes up block-level space */
+    font-size: 16px;
+    border: 1px solid #ccc; /* Add a border for clarity */
+    border-radius: 5px; /* Rounded corners */
+    box-sizing: border-box; /* Ensures padding is included in the width */
+  }
+  .search-input1 {
+    width: 800px; /* Set the width of the search bar */
+    padding: 10px;
+    margin: 20px auto; /* This centers the input horizontally with some space above and below */
+    margin-top: 10px;
+    display: block; /* Ensures it takes up block-level space */
+    font-size: 16px;
+    border: 1px solid #ccc; /* Add a border for clarity */
+    border-radius: 5px; /* Rounded corners */
+    box-sizing: border-box; /* Ensures padding is included in the width */
+  }
+  
+  .clothing {
+    padding: 20px;
+  }
+  
+  .clothing-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  /* Clothing resource block styles */
+  .clothing-block {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    width: calc(33% - 20px); /* Ensures three items per row */
+    background-color: rgba(255, 255, 255, 0.301);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    white-space: normal; /* Allow name to wrap and not cut off */
+    word-wrap: break-word; 
+    
+  }
+  
+  
+  
+  /* Clothing block info (county, address, phone, hours) */
+  .clothing-info {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .clothing-info div {
+    margin-bottom: 10px;
+  }
+  
+  /* Bold styling for info labels */
+  .clothing-info strong {
+    font-weight: bold;
+  }
+  
+  
+  /* Additional styling for the loading state */
+  .clothing .loading .housing {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #4CAF50;
+  }
+
+  .housing-block {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    width: calc(33% - 20px); /* Ensures three items per row */
+    height: 300px;
+    background-color: rgba(255, 255, 255, 0.301);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    white-space: normal; /* Allow name to wrap and not cut off */
+    word-wrap: break-word; 
+  }
+  
+  .housing-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .housing-info {
+    font-size: 14px;
+  }
+  
+  .housing-info div {
+    margin-bottom: 5px;
+  }
+
+  

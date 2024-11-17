@@ -1,6 +1,6 @@
     .Error-header {
-    background-image: url("../img/error-bg.jpg");
-    background-size: cover;
+      background: linear-gradient(to bottom, #7face7, #c3cee2, #d5d1ce, #eebe9a);
+      background-size: cover;
     background-position: center;
     height: 100vh;
     padding: 2%;
@@ -9,14 +9,14 @@
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    color: white;
+    color: rgb(123, 13, 13);
   }
   
   .error-title{
     font-size: 4em;
     font-weight: 700;
     margin: 0;
-    color: #ffffff;
+    color: #ac5f1c;
     margin-bottom: 3%;
   }
   

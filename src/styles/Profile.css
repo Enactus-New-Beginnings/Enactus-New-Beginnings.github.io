@@ -153,9 +153,9 @@ div.upload-resume{
   
 }
 .login-container {
-  background: linear-gradient(to bottom, #7face7,#c3cee2, #d5d1ce, #d5d1ce,#eebe9a);
+  background: linear-gradient(to bottom, #7face7, #7face7, #c3cee2,#c3cee2,#c3cee2, #d5d1ce,#d5d1ce, #eebe9a);
 }
-
+/*#eebe9a*/
 .custom-form-group input {
   height: 40px; 
   background-color: #f5ede9; 
@@ -163,7 +163,7 @@ div.upload-resume{
 }
 
 .signup-container {
-  background: linear-gradient(to bottom, #d5d1ce, #eebe9a, #e79879);
+  background: linear-gradient(to bottom, #d5d1ce,  #eebe9a, #eebe9a, #e79879);
 }
 
 @keyframes expandButton {
@@ -171,7 +171,7 @@ div.upload-resume{
     width: 100vw;
     height: 100vh;
     border-radius: 0;
-    background: linear-gradient(to bottom, #7face7,#c3cee2, #d5d1ce, #d5d1ce, #eebe9a);
+    background: linear-gradient(to bottom, #7face7, #7face7, #c3cee2,#c3cee2,#c3cee2, #d5d1ce,#d5d1ce, #eebe9a);
     transform: translate(0, 0);
     color: rgba(255, 255, 255, 0);
     box-shadow: none;
@@ -180,7 +180,7 @@ div.upload-resume{
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: linear-gradient(to bottom, #d5d1ce, #eebe9a, #e79879);
+  background: linear-gradient(to bottom, #d5d1ce,  #eebe9a, #eebe9a, #e79879);
     transform: translate(calc(100vw - 100px - 20px), calc(100vh - 100px - 20px)); 
     color: rgba(255, 255, 255, 0);
     box-shadow: none;
