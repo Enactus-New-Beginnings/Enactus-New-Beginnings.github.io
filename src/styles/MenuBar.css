@@ -6,7 +6,7 @@ div.fixed {
     background: transparent !important;
   }
   div.sticky {
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 99;
     background: transparent !important;
