@@ -33,7 +33,7 @@ export default function MenuBar() {
             ? "sticky"
             : "fixed"
         }
-      >
+      >  {/*Removed*/}
         <Navbar
          color=""
          light
