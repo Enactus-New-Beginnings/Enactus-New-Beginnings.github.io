@@ -142,7 +142,7 @@ const NewResources = () => {
     const searchTerm = searchQuery.toLowerCase();
     return (
       (clothingResource.Name && clothingResource.Name.toLowerCase().includes(searchTerm)) ||
-      (clothingResource.County && clothingResource.County.toLowerCase().includes(searchTerm))
+      (clothingResource.City && clothingResource.City.toLowerCase().includes(searchTerm))
     );
   });
 
@@ -237,7 +237,7 @@ const NewResources = () => {
           <div className="clothing">
             <input
               type="text"
-              placeholder="Search by county or name..."
+              placeholder="Search by city or name..."
               value={searchQuery}
               onChange={handleSearchChange}
               className="search-input1"
@@ -248,7 +248,7 @@ const NewResources = () => {
                   {clothingRow.map((clothingResource, index) => {
                     if (
                       clothingResource.Name && 
-                      clothingResource.County && 
+                      clothingResource.City && 
                       clothingResource.Address && 
                       clothingResource.Phone && 
                       clothingResource.Hours
@@ -259,7 +259,7 @@ const NewResources = () => {
                             {clothingResource.Name}
                           </div>
                           <div className="clothing-info">
-                            <div><strong>County:</strong> {clothingResource.County}</div>
+                            <div><strong>City:</strong> {clothingResource.City}</div>
                             <div><strong>Address:</strong> {clothingResource.Address}</div>
                             <div><strong>Phone:</strong> {clothingResource.Phone}</div>
                             <div><strong>Hours:</strong> {clothingResource.Hours}</div>
