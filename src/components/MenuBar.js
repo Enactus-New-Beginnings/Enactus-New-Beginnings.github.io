@@ -33,16 +33,11 @@ export default function MenuBar() {
             ? "sticky"
             : "fixed"
         }
-      >
+      >  {/*Removed*/}
         <Navbar
-          color={
-            location.pathname.includes("resources") ||
-            location.pathname.includes("employment")
-              ? "light"
-              : ""
-          }
-          light
-          expand="md"
+         color=""
+         light
+         expand="md"
         >
           <Link to="/">
             <NavbarBrand>
