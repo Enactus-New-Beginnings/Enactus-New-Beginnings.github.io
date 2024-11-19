@@ -5,6 +5,8 @@ from openai import OpenAI
 dotenv.load_dotenv()
 api_key = os.getenv('OPENAI_API_KEY')
 openai.api_key = api_key
+from structurize import get_structured_question
+import json
 
 
 def generate_ged_style_question(system_prompt, user_prompt, passage):
@@ -48,7 +50,7 @@ def read_files(system_prompt_path, user_prompt_path, passage_path):
     with open(system_prompt_path, "r", encoding='utf-8') as file:
         system_prompt = file.read()
         
-    user_prompt = replace_variable_in_prompt(user_prompt_path, {passage:passage})
+    user_prompt = replace_variable_in_prompt(user_prompt_path, {"passage": passage})
     
     return system_prompt, user_prompt, passage
     
@@ -61,7 +63,11 @@ if __name__ == "__main__":
     system_prompt, user_prompt, passage = read_files(system_prompt_path, user_prompt_path, passage_path)
     
     # Generate a GED-style question
-    question = generate_ged_style_question(system_prompt, user_prompt, passage)
-    
-    print("Generated Question:")
-    print(question)
+    question_string = generate_ged_style_question(system_prompt, user_prompt, passage)
+    question_dict = get_structured_question(question_string)
+
+    # Convert to JSON
+    parsed_json = json.dumps(question_dict, indent=4)
+    print(parsed_json)
+
+    # print(question_string)
