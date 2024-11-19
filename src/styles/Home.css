@@ -50,7 +50,6 @@ button:hover {
   font-size: 6rem;
   margin-top: 20px;
   color: #fcf6f1;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
 }
 
@@ -83,7 +82,6 @@ button:hover {
   font-family: 'Helvetica', sans-serif; 
   font-size: 3rem;
   font-weight: bold;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
 }
 
@@ -95,30 +93,30 @@ button:hover {
 .about-info-section {
   display: flex;
   justify-content: space-between;
-  align-items: stretch; /* Ensures both sections have the same height */
+  align-items: stretch; 
   gap: 20px;
   margin: 40px auto;
   padding: 20px;
-  max-width: 95%; /* Increased width to span more of the screen */
+  max-width: 95%;
 }
 
 .statistics-section,
 .mission-section {
-  flex: 1; /* Ensures equal width for both sections */
-  background: rgba(255, 255, 255, 0.9); /* Opaque background by default */
+  flex: 1; 
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 15px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: left;
-  height: auto; /* Automatically adapts height */
+  height: auto; 
   transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
 }
 
 .statistics-section:hover,
 .mission-section:hover {
-  background: transparent; /* Transparent background on hover */
-  transform: translateY(-5px); /* Lift effect */
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+  background: transparent; 
+  transform: translateY(-5px); 
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2); 
 }
 
 .statistics-section img {
@@ -139,14 +137,14 @@ button:hover {
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
-  color: #927871; /* Default heading color */
+  color: #927871; 
   margin-bottom: 15px;
-  transition: color 0.3s ease; /* Smooth color transition */
+  transition: color 0.3s ease; 
 }
 
 .statistics-section:hover .label-statistics-label,
 .mission-section:hover h3 {
-  color: #130f47; /* Changes heading color on hover */
+  color: #130f47; 
 }
 
 .mission-description {
@@ -160,7 +158,7 @@ button:hover {
   width: 100%;
   height: auto;
   border-radius: 15px;
-  margin-top: auto; /* Push the image to the bottom of the content */
+  margin-top: auto; 
 }
 
 /* Info Boxes */
@@ -173,41 +171,41 @@ button:hover {
 }
 
 .info-box {
-  flex: 1 1 calc(33.333% - 20px); /* Ensures responsive layout */
+  flex: 1 1 calc(33.333% - 20px); 
   min-width: 250px; 
-  background-color: #f9f9fc; /* Softer, cleaner background */
-  border-radius: 15px; /* Modern rounded corners */
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12); /* Softer, modern shadow */
-  padding: 25px; /* Increased padding for content spacing */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+  background-color: #f9f9fc; 
+  border-radius: 15px; 
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12); 
+  padding: 25px; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .info-box:hover {
-  transform: translateY(-10px); /* Slight lift effect on hover */
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  transform: translateY(-10px); 
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); 
 }
 
 .info-box h3 {
   font-size: 2rem;
   font-weight: bold; 
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Subtle text shadow for depth */
-  color: #4f5b81; /* Modern neutral color */
-  margin-bottom: 15px; /* Balanced spacing below heading */
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); 
+  color: #4f5b81; 
+  margin-bottom: 15px; 
 }
 
 .info-box p {
   font-size: 1rem; 
   font-weight: 400;
-  color: #555555; /* Softer, readable text color */
-  line-height: 1.8; /* Improved readability */
-  margin-top: 10px; /* Additional spacing for clean layout */
+  color: #555555; 
+  line-height: 1.8; 
+  margin-top: 10px; 
 }
 
 .info-box img {
-  width: 100%; /* Ensures images are responsive */
+  width: 100%; 
   height: auto;
-  border-radius: 10px; /* Soft rounded edges for images */
-  margin-bottom: 15px; /* Spacing between image and text */
+  border-radius: 10px;
+  margin-bottom: 15px; 
 }
 
 /* Responsive Design */

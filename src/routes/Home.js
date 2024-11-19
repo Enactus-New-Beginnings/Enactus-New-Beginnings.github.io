@@ -25,14 +25,14 @@ const Home = () => {
         <div className="about-info-section">
           {/* Statistics Section */}
           <div className="statistics-section">
-            <h3 className="label-statistics-label">Statistics</h3>
+            <h3 className="label-statistics-label">Meet The Team!</h3>
             <img src={Stat} alt="Rutgers Enactus" className="statistics-image" />
             <figcaption>Understanding the impact of recidivism rates.</figcaption>
           </div>
 
           {/* Our Mission Section */}
           <div className="mission-section">
-            <h3 className="label-mission-label">Our Mission</h3>
+            <h3 className="label-mission-label">About Us</h3>
             <p className="mission-description">
               To provide essential resources, job opportunities, and education
               to support incarcerated and recently released individuals,
