@@ -10,7 +10,7 @@
     background-size: cover;
     height: 100vh;
     background-position: center;
-    background-color: rgb(140, 140, 140);
+    background-color: rgba(140, 140, 140, 0);
     overflow-y: scroll
 
   }
