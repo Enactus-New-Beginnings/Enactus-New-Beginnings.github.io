@@ -59,7 +59,7 @@ if __name__ == "__main__":
 
     system_prompt_path = './prompts/system_prompt.txt'
     user_prompt_path = './prompts/user_prompt.txt'
-    passage_path = './passages/passage1.txt'
+    passage_path = './passages/haoyun.txt'
     system_prompt, user_prompt, passage = read_files(system_prompt_path, user_prompt_path, passage_path)
     
     # Generate a GED-style question
