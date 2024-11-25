@@ -67,12 +67,12 @@ This project processes a PDF containing GED RLA multiple-choice questions and ge
 
 ```
 project/
-├── materials/ # Input PDFs and related content
-├── old_approaches/ # Previous methodologies
-├── output/ # Generated questions and JSON outputs
-├── mcq_from_sample.py # Main script for question generation
-├── parse.py # Parsing script for structured JSON
-└── .env.example # Environment variable example file
+├── materials/          # Input PDFs and related content
+├── old_approaches/     # Previous methodologies
+├── output/             # Generated questions and JSON outputs
+├── mcq_from_sample.py  # Main script for question generation
+├── parse.py            # Parsing script for structured JSON
+└── .env.example        # Environment variable example file
 ```
 
 ## Dependencies
