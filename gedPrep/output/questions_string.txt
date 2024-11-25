@@ -1,0 +1,66 @@
+- **Question Type:** Reading for Meaning  
+- **Question:** What theme is primarily addressed in the following excerpt?  
+- **Passage:** In a small town renowned for its annual cherry blossom festival, residents prepare for months in anticipation. This year, however, a severe drought threatens to ruin the blossoms altogether. Mia, a passionate local horticulturist, rallies her neighbors to save the trees by organizing a weekend event to water them. The town unites in a show of community spirit, demonstrating that together they can overcome hardship. As the festival date approaches, the blossoms manage to bloom beautifully, symbolizing resilience and hope within the community.  
+- **Options:**  
+  - A. The importance of tradition in community life  
+  - B. The impact of nature on agriculture  
+  - C. The power of community and resilience in the face of adversity  
+  - D. The significance of local festivals on town morale  
+- **Correct Answer:** C  
+- **Explanation:** The passage illustrates how the community comes together to face the challenge of the drought, emphasizing resilience and cooperation, which are central to the theme. Options A and D do not capture the specific struggle and triumph depicted, while B focuses too narrowly on agriculture.
+
+  
+---  
+
+- **Question Type:** Tone and Purpose  
+- **Question:** What is the tone of the following excerpt?  
+- **Passage:** As the clock struck midnight, the streets of the city remained alive with the hum of nightlife. The neon lights flickered like a chorus of colorful stars, beckoning passersby to partake in the revelry. Laughter echoed through the alleys, mingling with the distant sound of a saxophonist playing a soulful tune. In that moment, the worries of the day seemed to fade, replaced by an electric happiness that thrummed in the air.  
+- **Options:**  
+  - A. Nostalgic  
+  - B. Melancholic  
+  - C. Vibrant and celebratory  
+  - D. Indifferent  
+- **Correct Answer:** C  
+- **Explanation:** The excerpt conveys a lively and joyful atmosphere, evident in phrases like "the hum of nightlife" and "electric happiness," which create a celebratory tone. Options A and B reflect opposite sentiments, while D does not match the enthusiastic nature of the passage.  
+
+  
+---  
+
+- **Question Type:** Grammar  
+- **Question:** Choose the option that correctly completes the sentence below.  
+- **Passage:** None  
+- **Options:**  
+  - A. The teacher, along with her students, are excited about the upcoming field trip.  
+  - B. The team, consisting of the best players, have won the championship.  
+  - C. Each of the participants must submit their application by Friday.  
+  - D. Neither of the dogs are aggressive when approached.  
+- **Correct Answer:** C  
+- **Explanation:** Option C is correct because "Each" is a singular subject, thus requires a singular verb "must." Options A and B incorrectly use plural verbs with singular subjects, and option D misuses "are" with "Neither," which should be followed by "is."  
+
+  
+---  
+
+- **Question Type:** Language Use  
+- **Question:** Choose the phrase that correctly completes the sentence below.  
+- **Passage:** None  
+- **Options:**  
+  - A. It was my brother and I who completed the project early.  
+  - B. My dog is better at catching than my sister and I.  
+  - C. Everybody needs to do their best, even if it feels difficult.  
+  - D. Both of the candidates was prepared for the discussion.  
+- **Correct Answer:** B  
+- **Explanation:** Option B correctly uses the proper comparative form "than" with the compound subject "my sister and I." Options A has a pronoun error ("I" should be "me"), C lacks agreement in terms of the pronoun "everybody" which should ideally be "his or her," and D uses "was" incorrectly for the plural "candidates."  
+
+  
+---  
+
+- **Question Type:** Sentence Structure  
+- **Question:** Choose the option that corrects the following sentence's structure.  
+- **Passage:** None  
+- **Options:**  
+  - A. Running late to the meeting, the bus was missed by James.  
+  - B. After the exam, my friends and I went to the cafe to celebrate.  
+  - C. I enjoy swimming in the summer, to go hiking during the winter.  
+  - D. The team will win the championship unless they don’t give up easily.  
+- **Correct Answer:** B  
+- **Explanation:** Option B has a correct structure with a clear subject and verb. Option A incorrectly suggests that the bus was running late, creating a misplaced modifier. Option C lacks parallelism and creates confusion, while option D has an acceptable structure, but does not convey the intended optimism like B does.
