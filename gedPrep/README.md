@@ -65,6 +65,7 @@ This project processes a PDF containing GED RLA multiple-choice questions and ge
 
 ## Folder Structure
 
+```
 project/
 ├── materials/ # Input PDFs and related content
 ├── old_approaches/ # Previous methodologies
@@ -72,6 +73,7 @@ project/
 ├── mcq_from_sample.py # Main script for question generation
 ├── parse.py # Parsing script for structured JSON
 └── .env.example # Environment variable example file
+```
 
 ## Dependencies
 
